@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="2"
-  DTS:VersionGUID="{AA6707D9-49CB-410C-B4F2-79813C55A7E6}">
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{D08B97FA-3677-47A9-B0AE-34696FA54D10}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -248,13 +248,13 @@
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Add Somme Column"
+      DTS:refId="Package\Split"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
       DTS:DTSID="{f3973799-9598-4d67-95b3-d1d5e07b3337}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Add Somme Column"
+      DTS:ObjectName="Split"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
@@ -262,7 +262,7 @@
           version="1">
           <components>
             <component
-              refId="Package\Add Somme Column\Conditional Split"
+              refId="Package\Split\Conditional Split"
               componentClassID="Microsoft.ConditionalSplit"
               contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
@@ -270,37 +270,37 @@
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\Add Somme Column\Conditional Split.Inputs[Conditional Split Input]"
+                  refId="Package\Split\Conditional Split.Inputs[Conditional Split Input]"
                   description="Input to the Conditional Split Transformation"
                   name="Conditional Split Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Add Somme Column\Conditional Split.Inputs[Conditional Split Input].Columns[Decision]"
+                      refId="Package\Split\Conditional Split.Inputs[Conditional Split Input].Columns[Decision]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="Decision"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[Decision]" />
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[Decision]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Add Somme Column\Conditional Split.Outputs[DATA_OUI]"
+                  refId="Package\Split\Conditional Split.Outputs[DATA_OUI]"
                   description="Output 1 of the Conditional Split Transformation"
                   errorOrTruncationOperation="Computation"
                   errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="DATA_OUI"
-                  synchronousInputId="Package\Add Somme Column\Conditional Split.Inputs[Conditional Split Input]"
+                  synchronousInputId="Package\Split\Conditional Split.Inputs[Conditional Split Input]"
                   truncationRowDisposition="FailComponent">
                   <properties>
                     <property
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">#{Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[Decision]} == "OUI"</property>
+                      name="Expression">#{Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[Decision]} == "OUI"</property>
                     <property
                       containsID="true"
                       dataType="System.String"
@@ -315,20 +315,20 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Add Somme Column\Conditional Split.Outputs[DATA_NON]"
+                  refId="Package\Split\Conditional Split.Outputs[DATA_NON]"
                   description="Output 2 of the Conditional Split Transformation"
                   errorOrTruncationOperation="Computation"
                   errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="DATA_NON"
-                  synchronousInputId="Package\Add Somme Column\Conditional Split.Inputs[Conditional Split Input]"
+                  synchronousInputId="Package\Split\Conditional Split.Inputs[Conditional Split Input]"
                   truncationRowDisposition="FailComponent">
                   <properties>
                     <property
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">#{Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[Decision]} == "NON"</property>
+                      name="Expression">#{Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[Decision]} == "NON"</property>
                     <property
                       containsID="true"
                       dataType="System.String"
@@ -343,11 +343,11 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Add Somme Column\Conditional Split.Outputs[Conditional Split Default Output]"
+                  refId="Package\Split\Conditional Split.Outputs[Conditional Split Default Output]"
                   description="Default Output of the Conditional Split Transformation"
                   exclusionGroup="1"
                   name="Conditional Split Default Output"
-                  synchronousInputId="Package\Add Somme Column\Conditional Split.Inputs[Conditional Split Input]">
+                  synchronousInputId="Package\Split\Conditional Split.Inputs[Conditional Split Input]">
                   <properties>
                     <property
                       dataType="System.Boolean"
@@ -356,23 +356,23 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Add Somme Column\Conditional Split.Outputs[Conditional Split Error Output]"
+                  refId="Package\Split\Conditional Split.Outputs[Conditional Split Error Output]"
                   description="Error Output of the Conditional Split Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Conditional Split Error Output"
-                  synchronousInputId="Package\Add Somme Column\Conditional Split.Inputs[Conditional Split Input]">
+                  synchronousInputId="Package\Split\Conditional Split.Inputs[Conditional Split Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Add Somme Column\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      refId="Package\Split\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Add Somme Column\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Split\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Add Somme Column\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      refId="Package\Split\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Add Somme Column\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Split\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -381,7 +381,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Add Somme Column\DATA txt"
+              refId="Package\Split\DATA txt"
               componentClassID="Microsoft.FlatFileSource"
               contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
               description="Flat File Source"
@@ -401,25 +401,25 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Add Somme Column\DATA txt.Connections[FlatFileConnection]"
+                  refId="Package\Split\DATA txt.Connections[FlatFileConnection]"
                   connectionManagerID="{CE46EB6C-2939-4CB7-A15B-068F32CC37D6}:external"
                   connectionManagerRefId="Project.ConnectionManagers[DATA txt Global]"
                   name="FlatFileConnection" />
               </connections>
               <outputs>
                 <output
-                  refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output]"
+                  refId="Package\Split\DATA txt.Outputs[Flat File Source Output]"
                   name="Flat File Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[Numero]"
+                      refId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[Numero]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Numero]"
+                      externalMetadataColumnId="Package\Split\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Numero]"
                       length="50"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[Numero]"
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[Numero]"
                       name="Numero"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -434,14 +434,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[Nom]"
+                      refId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[Nom]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Nom]"
+                      externalMetadataColumnId="Package\Split\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Nom]"
                       length="50"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[Nom]"
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[Nom]"
                       name="Nom"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -456,12 +456,12 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_1]"
+                      refId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_1]"
                       dataType="numeric"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_1]"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_1]"
+                      externalMetadataColumnId="Package\Split\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_1]"
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_1]"
                       name="val_1"
                       precision="18"
                       scale="2"
@@ -478,12 +478,12 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_2]"
+                      refId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_2]"
                       dataType="numeric"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_2]"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_2]"
+                      externalMetadataColumnId="Package\Split\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_2]"
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_2]"
                       name="val_2"
                       precision="18"
                       scale="2"
@@ -500,12 +500,12 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_3]"
+                      refId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_3]"
                       dataType="numeric"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_3]"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_3]"
+                      externalMetadataColumnId="Package\Split\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_3]"
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_3]"
                       name="val_3"
                       precision="18"
                       scale="2"
@@ -522,12 +522,12 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_4]"
+                      refId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_4]"
                       dataType="numeric"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_4]"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_4]"
+                      externalMetadataColumnId="Package\Split\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_4]"
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_4]"
                       name="val_4"
                       precision="18"
                       scale="2"
@@ -544,12 +544,12 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_5]"
+                      refId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_5]"
                       dataType="numeric"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_5]"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_5]"
+                      externalMetadataColumnId="Package\Split\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_5]"
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_5]"
                       name="val_5"
                       precision="18"
                       scale="2"
@@ -566,14 +566,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[Decision]"
+                      refId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[Decision]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Decision]"
+                      externalMetadataColumnId="Package\Split\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Decision]"
                       length="50"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[Decision]"
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[Decision]"
                       name="Decision"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -591,49 +591,49 @@
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Numero]"
+                      refId="Package\Split\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Numero]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="Numero" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Nom]"
+                      refId="Package\Split\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Nom]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="Nom" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_1]"
+                      refId="Package\Split\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_1]"
                       dataType="numeric"
                       name="val_1"
                       precision="18"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_2]"
+                      refId="Package\Split\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_2]"
                       dataType="numeric"
                       name="val_2"
                       precision="18"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_3]"
+                      refId="Package\Split\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_3]"
                       dataType="numeric"
                       name="val_3"
                       precision="18"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_4]"
+                      refId="Package\Split\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_4]"
                       dataType="numeric"
                       name="val_4"
                       precision="18"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_5]"
+                      refId="Package\Split\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_5]"
                       dataType="numeric"
                       name="val_5"
                       precision="18"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Decision]"
+                      refId="Package\Split\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Decision]"
                       codePage="1252"
                       dataType="str"
                       length="50"
@@ -641,27 +641,27 @@
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Error Output]"
+                  refId="Package\Split\DATA txt.Outputs[Flat File Source Error Output]"
                   isErrorOut="true"
                   name="Flat File Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      refId="Package\Split\DATA txt.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
                       codePage="1252"
                       dataType="text"
                       description="Flat File Source Error Output Column"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
                       name="Flat File Source Error Output Column" />
                     <outputColumn
-                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      refId="Package\Split\DATA txt.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\Split\DATA txt.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -670,7 +670,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Add Somme Column\DATA_NON"
+              refId="Package\Split\DATA_NON"
               componentClassID="Microsoft.FlatFileDestination"
               contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
               description="Flat File Destination"
@@ -694,154 +694,154 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Add Somme Column\DATA_NON.Connections[FlatFileConnection]"
+                  refId="Package\Split\DATA_NON.Connections[FlatFileConnection]"
                   connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager 1]"
                   connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager 1]"
                   name="FlatFileConnection" />
               </connections>
               <inputs>
                 <input
-                  refId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input]"
+                  refId="Package\Split\DATA_NON.Inputs[Flat File Destination Input]"
                   hasSideEffects="true"
                   name="Flat File Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].Columns[Numero]"
+                      refId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].Columns[Numero]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="Numero"
-                      externalMetadataColumnId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[Numero]"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[Numero]" />
+                      externalMetadataColumnId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[Numero]"
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[Numero]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].Columns[Nom]"
+                      refId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].Columns[Nom]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="Nom"
-                      externalMetadataColumnId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[Nom]"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[Nom]" />
+                      externalMetadataColumnId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[Nom]"
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[Nom]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].Columns[val_1]"
+                      refId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].Columns[val_1]"
                       cachedDataType="numeric"
                       cachedName="val_1"
                       cachedPrecision="18"
                       cachedScale="2"
-                      externalMetadataColumnId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[val_1]"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_1]" />
+                      externalMetadataColumnId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[val_1]"
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_1]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].Columns[val_2]"
+                      refId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].Columns[val_2]"
                       cachedDataType="numeric"
                       cachedName="val_2"
                       cachedPrecision="18"
                       cachedScale="2"
-                      externalMetadataColumnId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[val_2]"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_2]" />
+                      externalMetadataColumnId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[val_2]"
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_2]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].Columns[val_3]"
+                      refId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].Columns[val_3]"
                       cachedDataType="numeric"
                       cachedName="val_3"
                       cachedPrecision="18"
                       cachedScale="2"
-                      externalMetadataColumnId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[val_3]"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_3]" />
+                      externalMetadataColumnId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[val_3]"
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_3]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].Columns[val_4]"
+                      refId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].Columns[val_4]"
                       cachedDataType="numeric"
                       cachedName="val_4"
                       cachedPrecision="18"
                       cachedScale="2"
-                      externalMetadataColumnId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[val_4]"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_4]" />
+                      externalMetadataColumnId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[val_4]"
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_4]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].Columns[val_5]"
+                      refId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].Columns[val_5]"
                       cachedDataType="numeric"
                       cachedName="val_5"
                       cachedPrecision="18"
                       cachedScale="2"
-                      externalMetadataColumnId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[val_5]"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_5]" />
+                      externalMetadataColumnId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[val_5]"
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_5]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].Columns[Decision]"
+                      refId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].Columns[Decision]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="Decision"
-                      externalMetadataColumnId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[Decision]"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[Decision]" />
+                      externalMetadataColumnId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[Decision]"
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[Decision]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].Columns[Somme]"
+                      refId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].Columns[Somme]"
                       cachedDataType="numeric"
                       cachedName="Somme"
                       cachedPrecision="18"
                       cachedScale="2"
-                      externalMetadataColumnId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[Somme]"
-                      lineageId="Package\Add Somme Column\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Somme]" />
+                      externalMetadataColumnId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[Somme]"
+                      lineageId="Package\Split\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Somme]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].Columns[Date_Systeme]"
+                      refId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].Columns[Date_Systeme]"
                       cachedDataType="dbTimeStamp"
                       cachedName="Date_Systeme"
-                      externalMetadataColumnId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[Date_Systeme]"
-                      lineageId="Package\Add Somme Column\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Date_Systeme]" />
+                      externalMetadataColumnId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[Date_Systeme]"
+                      lineageId="Package\Split\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Date_Systeme]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[Numero]"
+                      refId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[Numero]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="Numero" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[Nom]"
+                      refId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[Nom]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="Nom" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[val_1]"
+                      refId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[val_1]"
                       dataType="numeric"
                       name="val_1"
                       precision="18"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[val_2]"
+                      refId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[val_2]"
                       dataType="numeric"
                       name="val_2"
                       precision="18"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[val_3]"
+                      refId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[val_3]"
                       dataType="numeric"
                       name="val_3"
                       precision="18"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[val_4]"
+                      refId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[val_4]"
                       dataType="numeric"
                       name="val_4"
                       precision="18"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[val_5]"
+                      refId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[val_5]"
                       dataType="numeric"
                       name="val_5"
                       precision="18"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[Decision]"
+                      refId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[Decision]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="Decision" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[Somme]"
+                      refId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[Somme]"
                       dataType="numeric"
                       name="Somme"
                       precision="18"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[Date_Systeme]"
+                      refId="Package\Split\DATA_NON.Inputs[Flat File Destination Input].ExternalColumns[Date_Systeme]"
                       dataType="dbTimeStamp"
                       name="Date_Systeme" />
                   </externalMetadataColumns>
@@ -849,7 +849,7 @@
               </inputs>
             </component>
             <component
-              refId="Package\Add Somme Column\DATA_OUI"
+              refId="Package\Split\DATA_OUI"
               componentClassID="Microsoft.FlatFileDestination"
               contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
               description="Flat File Destination"
@@ -873,140 +873,140 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Add Somme Column\DATA_OUI.Connections[FlatFileConnection]"
+                  refId="Package\Split\DATA_OUI.Connections[FlatFileConnection]"
                   connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager]"
                   connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager]"
                   name="FlatFileConnection" />
               </connections>
               <inputs>
                 <input
-                  refId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input]"
+                  refId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input]"
                   hasSideEffects="true"
                   name="Flat File Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input].Columns[Numero]"
+                      refId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input].Columns[Numero]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="Numero"
-                      externalMetadataColumnId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[Numero]"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[Numero]" />
+                      externalMetadataColumnId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[Numero]"
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[Numero]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input].Columns[Nom]"
+                      refId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input].Columns[Nom]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="Nom"
-                      externalMetadataColumnId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[Nom]"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[Nom]" />
+                      externalMetadataColumnId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[Nom]"
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[Nom]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input].Columns[val_1]"
+                      refId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input].Columns[val_1]"
                       cachedDataType="numeric"
                       cachedName="val_1"
                       cachedPrecision="18"
                       cachedScale="2"
-                      externalMetadataColumnId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[val_1]"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_1]" />
+                      externalMetadataColumnId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[val_1]"
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_1]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input].Columns[val_2]"
+                      refId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input].Columns[val_2]"
                       cachedDataType="numeric"
                       cachedName="val_2"
                       cachedPrecision="18"
                       cachedScale="2"
-                      externalMetadataColumnId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[val_2]"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_2]" />
+                      externalMetadataColumnId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[val_2]"
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_2]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input].Columns[val_3]"
+                      refId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input].Columns[val_3]"
                       cachedDataType="numeric"
                       cachedName="val_3"
                       cachedPrecision="18"
                       cachedScale="2"
-                      externalMetadataColumnId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[val_3]"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_3]" />
+                      externalMetadataColumnId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[val_3]"
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_3]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input].Columns[val_4]"
+                      refId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input].Columns[val_4]"
                       cachedDataType="numeric"
                       cachedName="val_4"
                       cachedPrecision="18"
                       cachedScale="2"
-                      externalMetadataColumnId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[val_4]"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_4]" />
+                      externalMetadataColumnId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[val_4]"
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_4]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input].Columns[val_5]"
+                      refId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input].Columns[val_5]"
                       cachedDataType="numeric"
                       cachedName="val_5"
                       cachedPrecision="18"
                       cachedScale="2"
-                      externalMetadataColumnId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[val_5]"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_5]" />
+                      externalMetadataColumnId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[val_5]"
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_5]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input].Columns[Decision]"
+                      refId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input].Columns[Decision]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="Decision"
-                      externalMetadataColumnId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[Decision]"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[Decision]" />
+                      externalMetadataColumnId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[Decision]"
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[Decision]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[Numero]"
+                      refId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[Numero]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="Numero" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[Nom]"
+                      refId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[Nom]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="Nom" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[val_1]"
+                      refId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[val_1]"
                       dataType="numeric"
                       name="val_1"
                       precision="18"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[val_2]"
+                      refId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[val_2]"
                       dataType="numeric"
                       name="val_2"
                       precision="18"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[val_3]"
+                      refId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[val_3]"
                       dataType="numeric"
                       name="val_3"
                       precision="18"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[val_4]"
+                      refId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[val_4]"
                       dataType="numeric"
                       name="val_4"
                       precision="18"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[val_5]"
+                      refId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[val_5]"
                       dataType="numeric"
                       name="val_5"
                       precision="18"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[Decision]"
+                      refId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[Decision]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="Decision" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[Somme]"
+                      refId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[Somme]"
                       dataType="numeric"
                       name="Somme"
                       precision="18"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[Date_Systeme]"
+                      refId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input].ExternalColumns[Date_Systeme]"
                       dataType="dbTimeStamp"
                       name="Date_Systeme" />
                   </externalMetadataColumns>
@@ -1014,7 +1014,7 @@
               </inputs>
             </component>
             <component
-              refId="Package\Add Somme Column\Somme Date_Systeme"
+              refId="Package\Split\Somme Date_Systeme"
               componentClassID="Microsoft.DerivedColumn"
               contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
@@ -1022,63 +1022,63 @@
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\Add Somme Column\Somme Date_Systeme.Inputs[Derived Column Input]"
+                  refId="Package\Split\Somme Date_Systeme.Inputs[Derived Column Input]"
                   description="Input to the Derived Column Transformation"
                   name="Derived Column Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Add Somme Column\Somme Date_Systeme.Inputs[Derived Column Input].Columns[val_1]"
+                      refId="Package\Split\Somme Date_Systeme.Inputs[Derived Column Input].Columns[val_1]"
                       cachedDataType="numeric"
                       cachedName="val_1"
                       cachedPrecision="18"
                       cachedScale="2"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_1]" />
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_1]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\Somme Date_Systeme.Inputs[Derived Column Input].Columns[val_2]"
+                      refId="Package\Split\Somme Date_Systeme.Inputs[Derived Column Input].Columns[val_2]"
                       cachedDataType="numeric"
                       cachedName="val_2"
                       cachedPrecision="18"
                       cachedScale="2"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_2]" />
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_2]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\Somme Date_Systeme.Inputs[Derived Column Input].Columns[val_3]"
+                      refId="Package\Split\Somme Date_Systeme.Inputs[Derived Column Input].Columns[val_3]"
                       cachedDataType="numeric"
                       cachedName="val_3"
                       cachedPrecision="18"
                       cachedScale="2"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_3]" />
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_3]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\Somme Date_Systeme.Inputs[Derived Column Input].Columns[val_4]"
+                      refId="Package\Split\Somme Date_Systeme.Inputs[Derived Column Input].Columns[val_4]"
                       cachedDataType="numeric"
                       cachedName="val_4"
                       cachedPrecision="18"
                       cachedScale="2"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_4]" />
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_4]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\Somme Date_Systeme.Inputs[Derived Column Input].Columns[val_5]"
+                      refId="Package\Split\Somme Date_Systeme.Inputs[Derived Column Input].Columns[val_5]"
                       cachedDataType="numeric"
                       cachedName="val_5"
                       cachedPrecision="18"
                       cachedScale="2"
-                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_5]" />
+                      lineageId="Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_5]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Add Somme Column\Somme Date_Systeme.Outputs[Derived Column Output]"
+                  refId="Package\Split\Somme Date_Systeme.Outputs[Derived Column Output]"
                   description="Default Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   name="Derived Column Output"
-                  synchronousInputId="Package\Add Somme Column\Somme Date_Systeme.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\Split\Somme Date_Systeme.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Add Somme Column\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Somme]"
+                      refId="Package\Split\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Somme]"
                       dataType="numeric"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
-                      lineageId="Package\Add Somme Column\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Somme]"
+                      lineageId="Package\Split\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Somme]"
                       name="Somme"
                       precision="18"
                       scale="2"
@@ -1088,7 +1088,7 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">(DT_NUMERIC,18,2)(#{Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_1]} + #{Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_2]} + #{Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_3]} + #{Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_4]} + #{Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_5]})</property>
+                          name="Expression">(DT_NUMERIC,18,2)(#{Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_1]} + #{Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_2]} + #{Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_3]} + #{Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_4]} + #{Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[val_5]})</property>
                         <property
                           containsID="true"
                           dataType="System.String"
@@ -1098,11 +1098,11 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Add Somme Column\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Date_Systeme]"
+                      refId="Package\Split\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Date_Systeme]"
                       dataType="dbTimeStamp"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
-                      lineageId="Package\Add Somme Column\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Date_Systeme]"
+                      lineageId="Package\Split\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Date_Systeme]"
                       name="Date_Systeme"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -1123,23 +1123,23 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Add Somme Column\Somme Date_Systeme.Outputs[Derived Column Error Output]"
+                  refId="Package\Split\Somme Date_Systeme.Outputs[Derived Column Error Output]"
                   description="Error Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Derived Column Error Output"
-                  synchronousInputId="Package\Add Somme Column\Somme Date_Systeme.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\Split\Somme Date_Systeme.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Add Somme Column\Somme Date_Systeme.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      refId="Package\Split\Somme Date_Systeme.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Add Somme Column\Somme Date_Systeme.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Split\Somme Date_Systeme.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Add Somme Column\Somme Date_Systeme.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      refId="Package\Split\Somme Date_Systeme.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Add Somme Column\Somme Date_Systeme.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Split\Somme Date_Systeme.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1150,25 +1150,25 @@
           </components>
           <paths>
             <path
-              refId="Package\Add Somme Column.Paths[DATA_NON]"
-              endId="Package\Add Somme Column\DATA_NON.Inputs[Flat File Destination Input]"
+              refId="Package\Split.Paths[DATA_NON]"
+              endId="Package\Split\DATA_NON.Inputs[Flat File Destination Input]"
               name="DATA_NON"
-              startId="Package\Add Somme Column\Conditional Split.Outputs[DATA_NON]" />
+              startId="Package\Split\Conditional Split.Outputs[DATA_NON]" />
             <path
-              refId="Package\Add Somme Column.Paths[DATA_OUI]"
-              endId="Package\Add Somme Column\DATA_OUI.Inputs[Flat File Destination Input]"
+              refId="Package\Split.Paths[DATA_OUI]"
+              endId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input]"
               name="DATA_OUI"
-              startId="Package\Add Somme Column\Conditional Split.Outputs[DATA_OUI]" />
+              startId="Package\Split\Conditional Split.Outputs[DATA_OUI]" />
             <path
-              refId="Package\Add Somme Column.Paths[Derived Column Output]"
-              endId="Package\Add Somme Column\Conditional Split.Inputs[Conditional Split Input]"
+              refId="Package\Split.Paths[Derived Column Output]"
+              endId="Package\Split\Conditional Split.Inputs[Conditional Split Input]"
               name="Derived Column Output"
-              startId="Package\Add Somme Column\Somme Date_Systeme.Outputs[Derived Column Output]" />
+              startId="Package\Split\Somme Date_Systeme.Outputs[Derived Column Output]" />
             <path
-              refId="Package\Add Somme Column.Paths[Flat File Source Output]"
-              endId="Package\Add Somme Column\Somme Date_Systeme.Inputs[Derived Column Input]"
+              refId="Package\Split.Paths[Flat File Source Output]"
+              endId="Package\Split\Somme Date_Systeme.Inputs[Derived Column Input]"
               name="Flat File Source Output"
-              startId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output]" />
+              startId="Package\Split\DATA txt.Outputs[Flat File Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -1187,27 +1187,27 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="174.4,41.6"
-          Id="Package\Add Somme Column"
+          Size="98.4,41.6"
+          Id="Package\Split"
           TopLeft="60,60" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\Add Somme Column">
+    design-time-name="Package\Split">
     <LayoutInfo>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="120.8,41.6"
-          Id="Package\Add Somme Column\DATA txt"
+          Id="Package\Split\DATA txt"
           TopLeft="135,53" />
         <NodeLayout
           Size="184.8,41.6"
-          Id="Package\Add Somme Column\Somme Date_Systeme"
+          Id="Package\Split\Somme Date_Systeme"
           TopLeft="349,87" />
         <EdgeLayout
-          Id="Package\Add Somme Column.Paths[Flat File Source Output]"
+          Id="Package\Split.Paths[Flat File Source Output]"
           TopLeft="255.8,73.8">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -1242,10 +1242,10 @@
         </EdgeLayout>
         <NodeLayout
           Size="154.4,41.6"
-          Id="Package\Add Somme Column\Conditional Split"
+          Id="Package\Split\Conditional Split"
           TopLeft="352,196" />
         <EdgeLayout
-          Id="Package\Add Somme Column.Paths[Derived Column Output]"
+          Id="Package\Split.Paths[Derived Column Output]"
           TopLeft="441.4,128.6">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -1280,10 +1280,10 @@
         </EdgeLayout>
         <NodeLayout
           Size="128.8,41.6"
-          Id="Package\Add Somme Column\DATA_OUI"
+          Id="Package\Split\DATA_OUI"
           TopLeft="132,295" />
         <EdgeLayout
-          Id="Package\Add Somme Column.Paths[DATA_OUI]"
+          Id="Package\Split.Paths[DATA_OUI]"
           TopLeft="429.2,237.6">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -1320,10 +1320,10 @@
         </EdgeLayout>
         <NodeLayout
           Size="132,41.6"
-          Id="Package\Add Somme Column\DATA_NON"
+          Id="Package\Split\DATA_NON"
           TopLeft="504,318" />
         <EdgeLayout
-          Id="Package\Add Somme Column.Paths[DATA_NON]"
+          Id="Package\Split.Paths[DATA_NON]"
           TopLeft="453.6,237.6">
           <EdgeLayout.Curve>
             <mssgle:Curve
