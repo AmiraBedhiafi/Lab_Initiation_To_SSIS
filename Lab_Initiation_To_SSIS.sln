@@ -7,6 +7,9 @@ Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "Lab_Initiation_To_SSIS", "L
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other", "Other", "{715A699E-D7B2-4060-A434-0ADE905BBA46}"
 	ProjectSection(SolutionItems) = preProject
+		data01.xls = data01.xls
+		data02.xls = data02.xls
+		data03.xls = data03.xls
 		DATA_NON.txt = DATA_NON.txt
 		DATA_OUI.txt = DATA_OUI.txt
 	EndProjectSection
