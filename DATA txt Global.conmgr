@@ -1,0 +1,96 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="DATA txt Global"
+  DTS:DTSID="{CE46EB6C-2939-4CB7-A15B-068F32CC37D6}"
+  DTS:CreationName="FLATFILE">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:Format="Delimited"
+      DTS:LocaleID="4096"
+      DTS:HeaderRowDelimiter="_x000D__x000A_"
+      DTS:RowDelimiter=""
+      DTS:TextQualifier="_x003C_none_x003E_"
+      DTS:CodePage="1252"
+      DTS:ConnectionString="C:\Users\amira\OneDrive\Bureau\BI\TP1\data.txt">
+      <DTS:FlatFileColumns>
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x007C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="Numero"
+          DTS:DTSID="{16714475-6D81-4D7A-8607-A9CC84B60C39}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x007C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="Nom"
+          DTS:DTSID="{27B2E32E-725F-40E9-8631-7FD88207C686}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x007C_"
+          DTS:DataType="131"
+          DTS:DataPrecision="18"
+          DTS:DataScale="2"
+          DTS:TextQualified="True"
+          DTS:ObjectName="val_1"
+          DTS:DTSID="{11FF9CA5-0B8F-4B85-BDB2-99A1DB4BB341}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x007C_"
+          DTS:DataType="131"
+          DTS:DataPrecision="18"
+          DTS:DataScale="2"
+          DTS:TextQualified="True"
+          DTS:ObjectName="val_2"
+          DTS:DTSID="{4182B271-CABD-473B-9697-8E758BAE875C}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x007C_"
+          DTS:DataType="131"
+          DTS:DataPrecision="18"
+          DTS:DataScale="2"
+          DTS:TextQualified="True"
+          DTS:ObjectName="val_3"
+          DTS:DTSID="{096F6D4E-234E-49D7-BD2F-BC564E287432}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x007C_"
+          DTS:DataType="131"
+          DTS:DataPrecision="18"
+          DTS:DataScale="2"
+          DTS:TextQualified="True"
+          DTS:ObjectName="val_4"
+          DTS:DTSID="{157743A9-9838-42A3-9DCB-04669FD6F017}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x007C_"
+          DTS:DataType="131"
+          DTS:DataPrecision="18"
+          DTS:DataScale="2"
+          DTS:TextQualified="True"
+          DTS:ObjectName="val_5"
+          DTS:DTSID="{54389492-464B-45C6-85F6-A9C9500B729A}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x000D__x000A_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="Decision"
+          DTS:DTSID="{D5A47EDB-312D-4E02-B16F-C2FD51C6DCE5}"
+          DTS:CreationName="" />
+      </DTS:FlatFileColumns>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
