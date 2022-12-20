@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="16"
-  DTS:VersionGUID="{2B424C46-C420-466E-B934-B564D261AA0B}">
+  DTS:VersionBuild="21"
+  DTS:VersionGUID="{8C29E263-8C28-4A08-873C-2B8C1055BC63}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -32,391 +32,11 @@
           version="1">
           <components>
             <component
-              refId="Package\Add Somme Column\Derived Column"
-              componentClassID="Microsoft.DerivedColumn"
-              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-              name="Derived Column"
-              usesDispositions="true">
-              <inputs>
-                <input
-                  refId="Package\Add Somme Column\Derived Column.Inputs[Derived Column Input]"
-                  description="Input to the Derived Column Transformation"
-                  name="Derived Column Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Add Somme Column\Derived Column.Inputs[Derived Column Input].Columns[val_1]"
-                      cachedDataType="numeric"
-                      cachedName="val_1"
-                      cachedPrecision="18"
-                      cachedScale="2"
-                      lineageId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[val_1]" />
-                    <inputColumn
-                      refId="Package\Add Somme Column\Derived Column.Inputs[Derived Column Input].Columns[val_2]"
-                      cachedDataType="numeric"
-                      cachedName="val_2"
-                      cachedPrecision="18"
-                      cachedScale="2"
-                      lineageId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[val_2]" />
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Add Somme Column\Derived Column.Outputs[Derived Column Output]"
-                  description="Default Output of the Derived Column Transformation"
-                  exclusionGroup="1"
-                  name="Derived Column Output"
-                  synchronousInputId="Package\Add Somme Column\Derived Column.Inputs[Derived Column Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Add Somme Column\Derived Column.Outputs[Derived Column Output].Columns[Somme]"
-                      dataType="numeric"
-                      errorOrTruncationOperation="Computation"
-                      errorRowDisposition="FailComponent"
-                      lineageId="Package\Add Somme Column\Derived Column.Outputs[Derived Column Output].Columns[Somme]"
-                      name="Somme"
-                      precision="18"
-                      scale="2"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Expression"
-                          name="Expression">(DT_NUMERIC,18,2)(#{Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[val_1]} + #{Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[val_2]})</property>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Friendly Expression"
-                          expressionType="Notify"
-                          name="FriendlyExpression">(DT_NUMERIC,18,2)(val_1 + val_2)</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Add Somme Column\Derived Column.Outputs[Derived Column Error Output]"
-                  description="Error Output of the Derived Column Transformation"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Derived Column Error Output"
-                  synchronousInputId="Package\Add Somme Column\Derived Column.Inputs[Derived Column Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Add Somme Column\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Add Somme Column\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Add Somme Column\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Add Somme Column\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Add Somme Column\Flat File Source"
-              componentClassID="Microsoft.FlatFileSource"
-              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
-              description="Flat File Source"
-              localeId="4096"
-              name="Flat File Source"
-              usesDispositions="true"
-              version="1">
-              <properties>
-                <property
-                  dataType="System.Boolean"
-                  description="Specifies whether zero-length columns are treated as null."
-                  name="RetainNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
-                  name="FileNameColumnName"></property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Add Somme Column\Flat File Source.Connections[FlatFileConnection]"
-                  connectionManagerID="{CE46EB6C-2939-4CB7-A15B-068F32CC37D6}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DATA txt Global]"
-                  name="FlatFileConnection" />
-              </connections>
-              <outputs>
-                <output
-                  refId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output]"
-                  name="Flat File Source Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[Numero]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Numero]"
-                      length="50"
-                      lineageId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[Numero]"
-                      name="Numero"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the data is in binary format."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[Nom]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Nom]"
-                      length="50"
-                      lineageId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[Nom]"
-                      name="Nom"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the data is in binary format."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[val_1]"
-                      dataType="numeric"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[val_1]"
-                      lineageId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[val_1]"
-                      name="val_1"
-                      precision="18"
-                      scale="2"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the data is in binary format."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[val_2]"
-                      dataType="numeric"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[val_2]"
-                      lineageId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[val_2]"
-                      name="val_2"
-                      precision="18"
-                      scale="2"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the data is in binary format."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[val_3]"
-                      dataType="numeric"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[val_3]"
-                      lineageId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[val_3]"
-                      name="val_3"
-                      precision="18"
-                      scale="2"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the data is in binary format."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[val_4]"
-                      dataType="numeric"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[val_4]"
-                      lineageId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[val_4]"
-                      name="val_4"
-                      precision="18"
-                      scale="2"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the data is in binary format."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[val_5]"
-                      dataType="numeric"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[val_5]"
-                      lineageId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[val_5]"
-                      name="val_5"
-                      precision="18"
-                      scale="2"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the data is in binary format."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[Decision]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Decision]"
-                      length="50"
-                      lineageId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[Decision]"
-                      name="Decision"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the data is in binary format."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Numero]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="Numero" />
-                    <externalMetadataColumn
-                      refId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Nom]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="Nom" />
-                    <externalMetadataColumn
-                      refId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[val_1]"
-                      dataType="numeric"
-                      name="val_1"
-                      precision="18"
-                      scale="2" />
-                    <externalMetadataColumn
-                      refId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[val_2]"
-                      dataType="numeric"
-                      name="val_2"
-                      precision="18"
-                      scale="2" />
-                    <externalMetadataColumn
-                      refId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[val_3]"
-                      dataType="numeric"
-                      name="val_3"
-                      precision="18"
-                      scale="2" />
-                    <externalMetadataColumn
-                      refId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[val_4]"
-                      dataType="numeric"
-                      name="val_4"
-                      precision="18"
-                      scale="2" />
-                    <externalMetadataColumn
-                      refId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[val_5]"
-                      dataType="numeric"
-                      name="val_5"
-                      precision="18"
-                      scale="2" />
-                    <externalMetadataColumn
-                      refId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Decision]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="Decision" />
-                  </externalMetadataColumns>
-                </output>
-                <output
-                  refId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Error Output]"
-                  isErrorOut="true"
-                  name="Flat File Source Error Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
-                      codePage="1252"
-                      dataType="text"
-                      description="Flat File Source Error Output Column"
-                      lineageId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
-                      name="Flat File Source Error Output Column" />
-                    <outputColumn
-                      refId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Add Somme Column\OLE DB Destination"
+              refId="Package\Add Somme Column\DATA table"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
-              name="OLE DB Destination"
+              name="DATA table"
               usesDispositions="true"
               version="4">
               <properties>
@@ -469,7 +89,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Add Somme Column\OLE DB Destination.Connections[OleDbConnection]"
+                  refId="Package\Add Somme Column\DATA table.Connections[OleDbConnection]"
                   connectionManagerID="{C4D167EA-A032-42EC-9EC2-02DF304716F6}:external"
                   connectionManagerRefId="Project.ConnectionManagers[LocalHost.Initiation_To_SSIS]"
                   description="The OLE DB runtime connection used to access the database."
@@ -477,162 +97,581 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  refId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Numero]"
+                      refId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input].Columns[Numero]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="Numero"
-                      externalMetadataColumnId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Numero]"
-                      lineageId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[Numero]" />
+                      externalMetadataColumnId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[Numero]"
+                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[Numero]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Nom]"
+                      refId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input].Columns[Nom]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="Nom"
-                      externalMetadataColumnId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Nom]"
-                      lineageId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[Nom]" />
+                      externalMetadataColumnId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[Nom]"
+                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[Nom]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[val_1]"
+                      refId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input].Columns[val_1]"
                       cachedDataType="numeric"
                       cachedName="val_1"
                       cachedPrecision="18"
                       cachedScale="2"
-                      externalMetadataColumnId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[val_1]"
-                      lineageId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[val_1]" />
+                      externalMetadataColumnId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[val_1]"
+                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_1]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[val_2]"
+                      refId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input].Columns[val_2]"
                       cachedDataType="numeric"
                       cachedName="val_2"
                       cachedPrecision="18"
                       cachedScale="2"
-                      externalMetadataColumnId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[val_2]"
-                      lineageId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[val_2]" />
+                      externalMetadataColumnId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[val_2]"
+                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_2]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[val_3]"
+                      refId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input].Columns[val_3]"
                       cachedDataType="numeric"
                       cachedName="val_3"
                       cachedPrecision="18"
                       cachedScale="2"
-                      externalMetadataColumnId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[val_3]"
-                      lineageId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[val_3]" />
+                      externalMetadataColumnId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[val_3]"
+                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_3]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[val_4]"
+                      refId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input].Columns[val_4]"
                       cachedDataType="numeric"
                       cachedName="val_4"
                       cachedPrecision="18"
                       cachedScale="2"
-                      externalMetadataColumnId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[val_4]"
-                      lineageId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[val_4]" />
+                      externalMetadataColumnId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[val_4]"
+                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_4]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[val_5]"
+                      refId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input].Columns[val_5]"
                       cachedDataType="numeric"
                       cachedName="val_5"
                       cachedPrecision="18"
                       cachedScale="2"
-                      externalMetadataColumnId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[val_5]"
-                      lineageId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[val_5]" />
+                      externalMetadataColumnId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[val_5]"
+                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_5]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Decision]"
+                      refId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input].Columns[Decision]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="Decision"
-                      externalMetadataColumnId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Decision]"
-                      lineageId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output].Columns[Decision]" />
+                      externalMetadataColumnId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[Decision]"
+                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[Decision]" />
                     <inputColumn
-                      refId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Somme]"
-                      cachedDataType="numeric"
-                      cachedName="Somme"
-                      cachedPrecision="18"
-                      cachedScale="2"
-                      externalMetadataColumnId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Somme]"
-                      lineageId="Package\Add Somme Column\Derived Column.Outputs[Derived Column Output].Columns[Somme]" />
+                      refId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input].Columns[Date_Systeme]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Date_Systeme"
+                      externalMetadataColumnId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[Date_Systeme]"
+                      lineageId="Package\Add Somme Column\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Date_Systeme]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Numero]"
+                      refId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[Numero]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="Numero" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Nom]"
+                      refId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[Nom]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="Nom" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[val_1]"
+                      refId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[val_1]"
                       dataType="numeric"
                       name="val_1"
                       precision="18"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[val_2]"
+                      refId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[val_2]"
                       dataType="numeric"
                       name="val_2"
                       precision="18"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[val_3]"
+                      refId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[val_3]"
                       dataType="numeric"
                       name="val_3"
                       precision="18"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[val_4]"
+                      refId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[val_4]"
                       dataType="numeric"
                       name="val_4"
                       precision="18"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[val_5]"
+                      refId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[val_5]"
                       dataType="numeric"
                       name="val_5"
                       precision="18"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Decision]"
+                      refId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[Decision]"
                       codePage="1252"
                       dataType="str"
                       length="3"
                       name="Decision" />
                     <externalMetadataColumn
-                      refId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Somme]"
-                      dataType="numeric"
-                      name="Somme"
-                      precision="18"
-                      scale="2" />
+                      refId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[Date_Systeme]"
+                      dataType="dbDate"
+                      name="Date_Systeme" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Add Somme Column\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\Add Somme Column\DATA table.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Add Somme Column\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Add Somme Column\DATA table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Add Somme Column\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Add Somme Column\DATA table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Add Somme Column\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Add Somme Column\DATA table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Add Somme Column\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Add Somme Column\DATA table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Add Somme Column\DATA txt"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="4096"
+              name="DATA txt"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Add Somme Column\DATA txt.Connections[FlatFileConnection]"
+                  connectionManagerID="{CE46EB6C-2939-4CB7-A15B-068F32CC37D6}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DATA txt Global]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[Numero]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Numero]"
+                      length="50"
+                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[Numero]"
+                      name="Numero"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[Nom]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Nom]"
+                      length="50"
+                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[Nom]"
+                      name="Nom"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_1]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_1]"
+                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_1]"
+                      name="val_1"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_2]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_2]"
+                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_2]"
+                      name="val_2"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_3]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_3]"
+                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_3]"
+                      name="val_3"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_4]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_4]"
+                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_4]"
+                      name="val_4"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_5]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_5]"
+                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_5]"
+                      name="val_5"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[Decision]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Decision]"
+                      length="50"
+                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[Decision]"
+                      name="Decision"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Numero" />
+                    <externalMetadataColumn
+                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Nom]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Nom" />
+                    <externalMetadataColumn
+                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_1]"
+                      dataType="numeric"
+                      name="val_1"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_2]"
+                      dataType="numeric"
+                      name="val_2"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_3]"
+                      dataType="numeric"
+                      name="val_3"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_4]"
+                      dataType="numeric"
+                      name="val_4"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_5]"
+                      dataType="numeric"
+                      name="val_5"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Decision]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Decision" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Add Somme Column\Somme Date_Systeme"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Somme Date_Systeme"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Add Somme Column\Somme Date_Systeme.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Add Somme Column\Somme Date_Systeme.Inputs[Derived Column Input].Columns[val_1]"
+                      cachedDataType="numeric"
+                      cachedName="val_1"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_1]" />
+                    <inputColumn
+                      refId="Package\Add Somme Column\Somme Date_Systeme.Inputs[Derived Column Input].Columns[val_2]"
+                      cachedDataType="numeric"
+                      cachedName="val_2"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_2]" />
+                    <inputColumn
+                      refId="Package\Add Somme Column\Somme Date_Systeme.Inputs[Derived Column Input].Columns[val_3]"
+                      cachedDataType="numeric"
+                      cachedName="val_3"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_3]" />
+                    <inputColumn
+                      refId="Package\Add Somme Column\Somme Date_Systeme.Inputs[Derived Column Input].Columns[val_4]"
+                      cachedDataType="numeric"
+                      cachedName="val_4"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_4]" />
+                    <inputColumn
+                      refId="Package\Add Somme Column\Somme Date_Systeme.Inputs[Derived Column Input].Columns[val_5]"
+                      cachedDataType="numeric"
+                      cachedName="val_5"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_5]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Add Somme Column\Somme Date_Systeme.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Add Somme Column\Somme Date_Systeme.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Add Somme Column\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Somme]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Add Somme Column\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Somme]"
+                      name="Somme"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_NUMERIC,18,2)(#{Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_1]} + #{Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_2]} + #{Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_3]} + #{Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_4]} + #{Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output].Columns[val_5]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_NUMERIC,18,2)(val_1 + val_2 + val_3 + val_4 + val_5)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Add Somme Column\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Date_Systeme]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Add Somme Column\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Date_Systeme]"
+                      name="Date_Systeme"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Add Somme Column\Somme Date_Systeme.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Add Somme Column\Somme Date_Systeme.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Add Somme Column\Somme Date_Systeme.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Add Somme Column\Somme Date_Systeme.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Add Somme Column\Somme Date_Systeme.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Add Somme Column\Somme Date_Systeme.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -644,14 +683,14 @@
           <paths>
             <path
               refId="Package\Add Somme Column.Paths[Derived Column Output]"
-              endId="Package\Add Somme Column\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              endId="Package\Add Somme Column\DATA table.Inputs[OLE DB Destination Input]"
               name="Derived Column Output"
-              startId="Package\Add Somme Column\Derived Column.Outputs[Derived Column Output]" />
+              startId="Package\Add Somme Column\Somme Date_Systeme.Outputs[Derived Column Output]" />
             <path
               refId="Package\Add Somme Column.Paths[Flat File Source Output]"
-              endId="Package\Add Somme Column\Derived Column.Inputs[Derived Column Input]"
+              endId="Package\Add Somme Column\Somme Date_Systeme.Inputs[Derived Column Input]"
               name="Flat File Source Output"
-              startId="Package\Add Somme Column\Flat File Source.Outputs[Flat File Source Output]" />
+              startId="Package\Add Somme Column\DATA txt.Outputs[Flat File Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -1221,26 +1260,26 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="150.4,41.6"
-          Id="Package\Add Somme Column\Flat File Source"
+          Size="120.8,41.6"
+          Id="Package\Add Somme Column\DATA txt"
           TopLeft="135,53" />
         <NodeLayout
-          Size="170.4,41.6"
-          Id="Package\Add Somme Column\OLE DB Destination"
+          Size="131.2,41.6"
+          Id="Package\Add Somme Column\DATA table"
           TopLeft="687,119" />
         <NodeLayout
-          Size="152.8,41.6"
-          Id="Package\Add Somme Column\Derived Column"
+          Size="184.8,41.6"
+          Id="Package\Add Somme Column\Somme Date_Systeme"
           TopLeft="364,176" />
         <EdgeLayout
           Id="Package\Add Somme Column.Paths[Flat File Source Output]"
-          TopLeft="210.2,94.6">
+          TopLeft="195.4,94.6">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="230.2,81.4"
+              EndConnector="261,81.4"
               Start="0,0"
-              End="230.2,73.9">
+              End="261,73.9">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -1251,13 +1290,13 @@
                     Point2="0,40.7"
                     Point3="4,40.7" />
                   <mssgle:LineSegment
-                    End="226.2,40.7" />
+                    End="257,40.7" />
                   <mssgle:CubicBezierSegment
-                    Point1="226.2,40.7"
-                    Point2="230.2,40.7"
-                    Point3="230.2,44.7" />
+                    Point1="257,40.7"
+                    Point2="261,40.7"
+                    Point3="261,44.7" />
                   <mssgle:LineSegment
-                    End="230.2,73.9" />
+                    End="261,73.9" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1268,37 +1307,37 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Add Somme Column.Paths[Derived Column Output]"
-          TopLeft="516.8,196.8">
+          TopLeft="548.8,196.8">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="170.2,-57"
+              EndConnector="138.2,-57"
               Start="0,0"
-              End="162.7,-57">
+              End="130.7,-57">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="81.1,0" />
+                    End="65.1,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="81.1,0"
-                    Point2="85.1,0"
-                    Point3="85.1,-4" />
+                    Point1="65.1,0"
+                    Point2="69.1,0"
+                    Point3="69.1,-4" />
                   <mssgle:LineSegment
-                    End="85.1,-53" />
+                    End="69.1,-53" />
                   <mssgle:CubicBezierSegment
-                    Point1="85.1,-53"
-                    Point2="85.1,-57"
-                    Point3="89.1,-57" />
+                    Point1="69.1,-53"
+                    Point2="69.1,-57"
+                    Point3="73.1,-57" />
                   <mssgle:LineSegment
-                    End="162.7,-57" />
+                    End="130.7,-57" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="77.1,1,16,16"
+              BoundingBox="61.1,1,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -1306,7 +1345,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Add Somme Column\OLE DB Destination">
+    design-time-name="Package\Add Somme Column\DATA table">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
