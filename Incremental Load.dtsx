@@ -1,0 +1,3225 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/20/2022 5:22:55 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-3BH3FB6H"
+  DTS:CreatorName="LAPTOP-3BH3FB6H\amira"
+  DTS:DTSID="{F624509B-053C-4F35-86E7-F613497BC10D}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.521.0"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="12"
+  DTS:VersionGUID="{46253107-2990-4ECD-8B12-30BCFF01C3B8}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Decision"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{0f2bc945-e455-4d12-88eb-7d2b9073179d}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Decision"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Decision\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Decision\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Decision\Conditional Split.Inputs[Conditional Split Input].Columns[Numero_txt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Numero_txt"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Numero_txt]" />
+                    <inputColumn
+                      refId="Package\Decision\Conditional Split.Inputs[Conditional Split Input].Columns[Numero_db]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Numero_db"
+                      cachedSortKeyPosition="-1"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Numero_db]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Decision\Conditional Split.Outputs[Insert]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Insert"
+                  synchronousInputId="Package\Decision\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Numero_db]}) &amp;&amp; ![ISNULL](#{Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Numero_txt]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(Numero_db) &amp;&amp; !ISNULL(Numero_txt)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Decision\Conditional Split.Outputs[Update]"
+                  description="Output 2 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Update"
+                  synchronousInputId="Package\Decision\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">![ISNULL](#{Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Numero_db]}) &amp;&amp; ![ISNULL](#{Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Numero_txt]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">!ISNULL(Numero_db) &amp;&amp; !ISNULL(Numero_txt)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Decision\Conditional Split.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\Decision\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Decision\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Decision\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Decision\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Decision\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Decision\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Decision\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Decision\Conditional Split 1"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Decision\Conditional Split 1.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Decision\Conditional Split 1.Inputs[Conditional Split Input].Columns[Nom_txt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Nom_txt"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Nom_txt]" />
+                    <inputColumn
+                      refId="Package\Decision\Conditional Split 1.Inputs[Conditional Split Input].Columns[val_1_txt]"
+                      cachedDataType="numeric"
+                      cachedName="val_1_txt"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_1_txt]" />
+                    <inputColumn
+                      refId="Package\Decision\Conditional Split 1.Inputs[Conditional Split Input].Columns[val_2_txt]"
+                      cachedDataType="numeric"
+                      cachedName="val_2_txt"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_2_txt]" />
+                    <inputColumn
+                      refId="Package\Decision\Conditional Split 1.Inputs[Conditional Split Input].Columns[val_3_txt]"
+                      cachedDataType="numeric"
+                      cachedName="val_3_txt"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_3_txt]" />
+                    <inputColumn
+                      refId="Package\Decision\Conditional Split 1.Inputs[Conditional Split Input].Columns[val_4_txt]"
+                      cachedDataType="numeric"
+                      cachedName="val_4_txt"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_4_txt]" />
+                    <inputColumn
+                      refId="Package\Decision\Conditional Split 1.Inputs[Conditional Split Input].Columns[val_5_txt]"
+                      cachedDataType="numeric"
+                      cachedName="val_5_txt"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_5_txt]" />
+                    <inputColumn
+                      refId="Package\Decision\Conditional Split 1.Inputs[Conditional Split Input].Columns[Decision_txt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Decision_txt"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Decision_txt]" />
+                    <inputColumn
+                      refId="Package\Decision\Conditional Split 1.Inputs[Conditional Split Input].Columns[Nom_db]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Nom_db"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Nom_db]" />
+                    <inputColumn
+                      refId="Package\Decision\Conditional Split 1.Inputs[Conditional Split Input].Columns[val_1_db]"
+                      cachedDataType="numeric"
+                      cachedName="val_1_db"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_1_db]" />
+                    <inputColumn
+                      refId="Package\Decision\Conditional Split 1.Inputs[Conditional Split Input].Columns[val_2_db]"
+                      cachedDataType="numeric"
+                      cachedName="val_2_db"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_2_db]" />
+                    <inputColumn
+                      refId="Package\Decision\Conditional Split 1.Inputs[Conditional Split Input].Columns[val_3_db]"
+                      cachedDataType="numeric"
+                      cachedName="val_3_db"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_3_db]" />
+                    <inputColumn
+                      refId="Package\Decision\Conditional Split 1.Inputs[Conditional Split Input].Columns[val_4_db]"
+                      cachedDataType="numeric"
+                      cachedName="val_4_db"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_4_db]" />
+                    <inputColumn
+                      refId="Package\Decision\Conditional Split 1.Inputs[Conditional Split Input].Columns[val_5_db]"
+                      cachedDataType="numeric"
+                      cachedName="val_5_db"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_5_db]" />
+                    <inputColumn
+                      refId="Package\Decision\Conditional Split 1.Inputs[Conditional Split Input].Columns[Decision_db]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="Decision_db"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Decision_db]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Decision\Conditional Split 1.Outputs[Update]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Update"
+                  synchronousInputId="Package\Decision\Conditional Split 1.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Nom_txt]} != #{Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Nom_db]} || #{Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_1_txt]} != #{Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_1_db]} || #{Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_2_txt]} != #{Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_2_db]} || #{Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_3_txt]} != #{Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_3_db]} || #{Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_4_txt]} != #{Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_4_db]} || #{Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_5_txt]} != #{Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_5_db]} || #{Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Decision_txt]} != #{Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Decision_db]}</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">Nom_txt != Nom_db || val_1_txt != val_1_db || val_2_txt != val_2_db || val_3_txt != val_3_db || val_4_txt != val_4_db || val_5_txt != val_5_db || Decision_txt != Decision_db</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Decision\Conditional Split 1.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\Decision\Conditional Split 1.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Decision\Conditional Split 1.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Decision\Conditional Split 1.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Decision\Conditional Split 1.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Decision\Conditional Split 1.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Decision\Conditional Split 1.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Decision\Conditional Split 1.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Decision\Data db"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Data db"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DATA]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+Numero 
+,Nom 
+,val_1
+,val_2
+,val_3
+,val_4
+,val_5
+,Decision
+,Date_Systeme
+FROM [DATA]
+ORDER BY Numero DESC</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Decision\Data db.Connections[OleDbConnection]"
+                  connectionManagerID="{C4D167EA-A032-42EC-9EC2-02DF304716F6}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.Initiation_To_SSIS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Decision\Data db.Outputs[OLE DB Source Output]"
+                  isSorted="true"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[Nom]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Decision\Data db.Outputs[OLE DB Source Output].ExternalColumns[Nom]"
+                      length="50"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[Nom]"
+                      name="Nom"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[val_1]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Decision\Data db.Outputs[OLE DB Source Output].ExternalColumns[val_1]"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[val_1]"
+                      name="val_1"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[val_2]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Decision\Data db.Outputs[OLE DB Source Output].ExternalColumns[val_2]"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[val_2]"
+                      name="val_2"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[val_3]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Decision\Data db.Outputs[OLE DB Source Output].ExternalColumns[val_3]"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[val_3]"
+                      name="val_3"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[val_4]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Decision\Data db.Outputs[OLE DB Source Output].ExternalColumns[val_4]"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[val_4]"
+                      name="val_4"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[Numero]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Decision\Data db.Outputs[OLE DB Source Output].ExternalColumns[Numero]"
+                      length="50"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[Numero]"
+                      name="Numero"
+                      sortKeyPosition="1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[val_5]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Decision\Data db.Outputs[OLE DB Source Output].ExternalColumns[val_5]"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[val_5]"
+                      name="val_5"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[Decision]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Decision\Data db.Outputs[OLE DB Source Output].ExternalColumns[Decision]"
+                      length="3"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[Decision]"
+                      name="Decision"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[Date_Systeme]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Decision\Data db.Outputs[OLE DB Source Output].ExternalColumns[Date_Systeme]"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[Date_Systeme]"
+                      name="Date_Systeme"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Output].ExternalColumns[Nom]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Nom" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Output].ExternalColumns[val_1]"
+                      dataType="numeric"
+                      name="val_1"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Output].ExternalColumns[val_2]"
+                      dataType="numeric"
+                      name="val_2"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Output].ExternalColumns[val_3]"
+                      dataType="numeric"
+                      name="val_3"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Output].ExternalColumns[val_4]"
+                      dataType="numeric"
+                      name="val_4"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Output].ExternalColumns[Numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Numero" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Output].ExternalColumns[val_5]"
+                      dataType="numeric"
+                      name="val_5"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Output].ExternalColumns[Decision]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="Decision" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Output].ExternalColumns[Date_Systeme]"
+                      dataType="dbDate"
+                      name="Date_Systeme" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Decision\Data db.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Error Output].Columns[Numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Error Output].Columns[Numero]"
+                      name="Numero" />
+                    <outputColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Error Output].Columns[Nom]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Error Output].Columns[Nom]"
+                      name="Nom" />
+                    <outputColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Error Output].Columns[val_1]"
+                      dataType="numeric"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Error Output].Columns[val_1]"
+                      name="val_1"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Error Output].Columns[val_2]"
+                      dataType="numeric"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Error Output].Columns[val_2]"
+                      name="val_2"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Error Output].Columns[val_3]"
+                      dataType="numeric"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Error Output].Columns[val_3]"
+                      name="val_3"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Error Output].Columns[val_4]"
+                      dataType="numeric"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Error Output].Columns[val_4]"
+                      name="val_4"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Error Output].Columns[val_5]"
+                      dataType="numeric"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Error Output].Columns[val_5]"
+                      name="val_5"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Error Output].Columns[Decision]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Error Output].Columns[Decision]"
+                      name="Decision" />
+                    <outputColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Error Output].Columns[Date_Systeme]"
+                      dataType="dbDate"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Error Output].Columns[Date_Systeme]"
+                      name="Date_Systeme" />
+                    <outputColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Decision\Data db.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Decision\DATA txt"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="4096"
+              name="DATA txt"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Decision\DATA txt.Connections[FlatFileConnection]"
+                  connectionManagerID="{CE46EB6C-2939-4CB7-A15B-068F32CC37D6}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DATA txt Global]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Decision\DATA txt.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[Numero]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Numero]"
+                      length="50"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[Numero]"
+                      name="Numero"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[Nom]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Nom]"
+                      length="50"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[Nom]"
+                      name="Nom"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_1]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_1]"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_1]"
+                      name="val_1"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_2]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_2]"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_2]"
+                      name="val_2"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_3]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_3]"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_3]"
+                      name="val_3"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_4]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_4]"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_4]"
+                      name="val_4"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_5]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_5]"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_5]"
+                      name="val_5"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[Decision]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Decision]"
+                      length="50"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[Decision]"
+                      name="Decision"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Numero" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Nom]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Nom" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_1]"
+                      dataType="numeric"
+                      name="val_1"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_2]"
+                      dataType="numeric"
+                      name="val_2"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_3]"
+                      dataType="numeric"
+                      name="val_3"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_4]"
+                      dataType="numeric"
+                      name="val_4"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_5]"
+                      dataType="numeric"
+                      name="val_5"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Decision]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Decision" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Decision\DATA txt.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Decision\Merge Join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Decision\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Decision\Merge Join.Inputs[Merge Join Right Input].Columns[Numero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Numero"
+                      cachedSortKeyPosition="-1"
+                      lineageId="Package\Decision\Sort.Outputs[Sort Output].Columns[Numero]" />
+                    <inputColumn
+                      refId="Package\Decision\Merge Join.Inputs[Merge Join Right Input].Columns[Nom]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Nom"
+                      lineageId="Package\Decision\Sort.Outputs[Sort Output].Columns[Nom]" />
+                    <inputColumn
+                      refId="Package\Decision\Merge Join.Inputs[Merge Join Right Input].Columns[val_1]"
+                      cachedDataType="numeric"
+                      cachedName="val_1"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\Sort.Outputs[Sort Output].Columns[val_1]" />
+                    <inputColumn
+                      refId="Package\Decision\Merge Join.Inputs[Merge Join Right Input].Columns[val_2]"
+                      cachedDataType="numeric"
+                      cachedName="val_2"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\Sort.Outputs[Sort Output].Columns[val_2]" />
+                    <inputColumn
+                      refId="Package\Decision\Merge Join.Inputs[Merge Join Right Input].Columns[val_3]"
+                      cachedDataType="numeric"
+                      cachedName="val_3"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\Sort.Outputs[Sort Output].Columns[val_3]" />
+                    <inputColumn
+                      refId="Package\Decision\Merge Join.Inputs[Merge Join Right Input].Columns[val_4]"
+                      cachedDataType="numeric"
+                      cachedName="val_4"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\Sort.Outputs[Sort Output].Columns[val_4]" />
+                    <inputColumn
+                      refId="Package\Decision\Merge Join.Inputs[Merge Join Right Input].Columns[val_5]"
+                      cachedDataType="numeric"
+                      cachedName="val_5"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\Sort.Outputs[Sort Output].Columns[val_5]" />
+                    <inputColumn
+                      refId="Package\Decision\Merge Join.Inputs[Merge Join Right Input].Columns[Decision]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="Decision"
+                      lineageId="Package\Decision\Sort.Outputs[Sort Output].Columns[Decision]" />
+                    <inputColumn
+                      refId="Package\Decision\Merge Join.Inputs[Merge Join Right Input].Columns[Date_Systeme]"
+                      cachedDataType="dbDate"
+                      cachedName="Date_Systeme"
+                      lineageId="Package\Decision\Sort.Outputs[Sort Output].Columns[Date_Systeme]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Decision\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Decision\Merge Join.Inputs[Merge Join Left Input].Columns[Numero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Numero"
+                      cachedSortKeyPosition="-1"
+                      lineageId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[Numero]" />
+                    <inputColumn
+                      refId="Package\Decision\Merge Join.Inputs[Merge Join Left Input].Columns[Nom]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Nom"
+                      lineageId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[Nom]" />
+                    <inputColumn
+                      refId="Package\Decision\Merge Join.Inputs[Merge Join Left Input].Columns[val_1]"
+                      cachedDataType="numeric"
+                      cachedName="val_1"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[val_1]" />
+                    <inputColumn
+                      refId="Package\Decision\Merge Join.Inputs[Merge Join Left Input].Columns[val_2]"
+                      cachedDataType="numeric"
+                      cachedName="val_2"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[val_2]" />
+                    <inputColumn
+                      refId="Package\Decision\Merge Join.Inputs[Merge Join Left Input].Columns[val_3]"
+                      cachedDataType="numeric"
+                      cachedName="val_3"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[val_3]" />
+                    <inputColumn
+                      refId="Package\Decision\Merge Join.Inputs[Merge Join Left Input].Columns[val_4]"
+                      cachedDataType="numeric"
+                      cachedName="val_4"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[val_4]" />
+                    <inputColumn
+                      refId="Package\Decision\Merge Join.Inputs[Merge Join Left Input].Columns[val_5]"
+                      cachedDataType="numeric"
+                      cachedName="val_5"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[val_5]" />
+                    <inputColumn
+                      refId="Package\Decision\Merge Join.Inputs[Merge Join Left Input].Columns[Decision]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Decision"
+                      lineageId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[Decision]" />
+                    <inputColumn
+                      refId="Package\Decision\Merge Join.Inputs[Merge Join Left Input].Columns[Somme]"
+                      cachedDataType="numeric"
+                      cachedName="Somme"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[Somme]" />
+                    <inputColumn
+                      refId="Package\Decision\Merge Join.Inputs[Merge Join Left Input].Columns[Date_Systeme]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Date_Systeme"
+                      lineageId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[Date_Systeme]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Decision\Merge Join.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Numero_txt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Numero_txt]"
+                      name="Numero_txt">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Decision\Merge Join.Inputs[Merge Join Left Input].Columns[Numero]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Nom_txt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Nom_txt]"
+                      name="Nom_txt">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Decision\Merge Join.Inputs[Merge Join Left Input].Columns[Nom]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_1_txt]"
+                      dataType="numeric"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_1_txt]"
+                      name="val_1_txt"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Decision\Merge Join.Inputs[Merge Join Left Input].Columns[val_1]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_2_txt]"
+                      dataType="numeric"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_2_txt]"
+                      name="val_2_txt"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Decision\Merge Join.Inputs[Merge Join Left Input].Columns[val_2]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_3_txt]"
+                      dataType="numeric"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_3_txt]"
+                      name="val_3_txt"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Decision\Merge Join.Inputs[Merge Join Left Input].Columns[val_3]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_4_txt]"
+                      dataType="numeric"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_4_txt]"
+                      name="val_4_txt"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Decision\Merge Join.Inputs[Merge Join Left Input].Columns[val_4]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_5_txt]"
+                      dataType="numeric"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_5_txt]"
+                      name="val_5_txt"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Decision\Merge Join.Inputs[Merge Join Left Input].Columns[val_5]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Decision_txt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Decision_txt]"
+                      name="Decision_txt">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Decision\Merge Join.Inputs[Merge Join Left Input].Columns[Decision]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Somme_txt]"
+                      dataType="numeric"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Somme_txt]"
+                      name="Somme_txt"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Decision\Merge Join.Inputs[Merge Join Left Input].Columns[Somme]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Date_Systeme_txt]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Date_Systeme_txt]"
+                      name="Date_Systeme_txt">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Decision\Merge Join.Inputs[Merge Join Left Input].Columns[Date_Systeme]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Nom_db]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Nom_db]"
+                      name="Nom_db">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Decision\Merge Join.Inputs[Merge Join Right Input].Columns[Nom]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_1_db]"
+                      dataType="numeric"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_1_db]"
+                      name="val_1_db"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Decision\Merge Join.Inputs[Merge Join Right Input].Columns[val_1]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_2_db]"
+                      dataType="numeric"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_2_db]"
+                      name="val_2_db"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Decision\Merge Join.Inputs[Merge Join Right Input].Columns[val_2]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_3_db]"
+                      dataType="numeric"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_3_db]"
+                      name="val_3_db"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Decision\Merge Join.Inputs[Merge Join Right Input].Columns[val_3]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_4_db]"
+                      dataType="numeric"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_4_db]"
+                      name="val_4_db"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Decision\Merge Join.Inputs[Merge Join Right Input].Columns[val_4]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Numero_db]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Numero_db]"
+                      name="Numero_db"
+                      sortKeyPosition="-1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Decision\Merge Join.Inputs[Merge Join Right Input].Columns[Numero]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_5_db]"
+                      dataType="numeric"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_5_db]"
+                      name="val_5_db"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Decision\Merge Join.Inputs[Merge Join Right Input].Columns[val_5]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Decision_db]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Decision_db]"
+                      name="Decision_db">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Decision\Merge Join.Inputs[Merge Join Right Input].Columns[Decision]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Date_Systeme_db]"
+                      dataType="dbDate"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Date_Systeme_db]"
+                      name="Date_Systeme_db">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Decision\Merge Join.Inputs[Merge Join Right Input].Columns[Date_Systeme]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Decision\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[DATA]
+   SET [Nom] = ?
+      ,[val_1] = ?
+      ,[val_2] = ?
+      ,[val_3] = ?
+      ,[val_4] = ?
+      ,[val_5] = ?
+      ,[Decision] = ?
+      ,[Date_Systeme] = ?
+      ,[Somme] = ?
+ WHERE [Numero] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Decision\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="{C4D167EA-A032-42EC-9EC2-02DF304716F6}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.Initiation_To_SSIS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].Columns[Numero_txt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Numero_txt"
+                      externalMetadataColumnId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Numero_txt]" />
+                    <inputColumn
+                      refId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].Columns[Nom_txt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Nom_txt"
+                      externalMetadataColumnId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Nom_txt]" />
+                    <inputColumn
+                      refId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].Columns[val_1_txt]"
+                      cachedDataType="numeric"
+                      cachedName="val_1_txt"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_1_txt]" />
+                    <inputColumn
+                      refId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].Columns[val_2_txt]"
+                      cachedDataType="numeric"
+                      cachedName="val_2_txt"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_2_txt]" />
+                    <inputColumn
+                      refId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].Columns[val_3_txt]"
+                      cachedDataType="numeric"
+                      cachedName="val_3_txt"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_3_txt]" />
+                    <inputColumn
+                      refId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].Columns[val_4_txt]"
+                      cachedDataType="numeric"
+                      cachedName="val_4_txt"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_4_txt]" />
+                    <inputColumn
+                      refId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].Columns[val_5_txt]"
+                      cachedDataType="numeric"
+                      cachedName="val_5_txt"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_5_txt]" />
+                    <inputColumn
+                      refId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].Columns[Decision_txt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Decision_txt"
+                      externalMetadataColumnId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Decision_txt]" />
+                    <inputColumn
+                      refId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].Columns[Date_Systeme_txt]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Date_Systeme_txt"
+                      externalMetadataColumnId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Date_Systeme_txt]" />
+                    <inputColumn
+                      refId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].Columns[Somme_txt]"
+                      cachedDataType="numeric"
+                      cachedName="Somme_txt"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Somme_txt]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="numeric"
+                      name="Param_1"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="numeric"
+                      name="Param_2"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="numeric"
+                      name="Param_3"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      dataType="numeric"
+                      name="Param_4"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      dataType="numeric"
+                      name="Param_5"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="Param_6">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      dataType="dbDate"
+                      name="Param_7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
+                      dataType="numeric"
+                      name="Param_8"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_9">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Decision\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Decision\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Decision\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Decision\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Decision\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Decision\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Decision\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DATA]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Decision\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{C4D167EA-A032-42EC-9EC2-02DF304716F6}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.Initiation_To_SSIS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Numero_txt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Numero_txt"
+                      externalMetadataColumnId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Numero]"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Numero_txt]" />
+                    <inputColumn
+                      refId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Nom_txt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Nom_txt"
+                      externalMetadataColumnId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Nom]"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Nom_txt]" />
+                    <inputColumn
+                      refId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[val_1_txt]"
+                      cachedDataType="numeric"
+                      cachedName="val_1_txt"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[val_1]"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_1_txt]" />
+                    <inputColumn
+                      refId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[val_3_txt]"
+                      cachedDataType="numeric"
+                      cachedName="val_3_txt"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[val_3]"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_3_txt]" />
+                    <inputColumn
+                      refId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[val_2_txt]"
+                      cachedDataType="numeric"
+                      cachedName="val_2_txt"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[val_2]"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_2_txt]" />
+                    <inputColumn
+                      refId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[val_4_txt]"
+                      cachedDataType="numeric"
+                      cachedName="val_4_txt"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[val_4]"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_4_txt]" />
+                    <inputColumn
+                      refId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[val_5_txt]"
+                      cachedDataType="numeric"
+                      cachedName="val_5_txt"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[val_5]"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[val_5_txt]" />
+                    <inputColumn
+                      refId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Decision_txt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Decision_txt"
+                      externalMetadataColumnId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Decision]"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Decision_txt]" />
+                    <inputColumn
+                      refId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Date_Systeme_txt]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Date_Systeme_txt"
+                      externalMetadataColumnId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Date_Systeme]"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Date_Systeme_txt]" />
+                    <inputColumn
+                      refId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Somme_txt]"
+                      cachedDataType="numeric"
+                      cachedName="Somme_txt"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Somme]"
+                      lineageId="Package\Decision\Merge Join.Outputs[Merge Join Output].Columns[Somme_txt]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Numero" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Nom]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Nom" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[val_1]"
+                      dataType="numeric"
+                      name="val_1"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[val_2]"
+                      dataType="numeric"
+                      name="val_2"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[val_3]"
+                      dataType="numeric"
+                      name="val_3"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[val_4]"
+                      dataType="numeric"
+                      name="val_4"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[val_5]"
+                      dataType="numeric"
+                      name="val_5"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Decision]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="Decision" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Date_Systeme]"
+                      dataType="dbDate"
+                      name="Date_Systeme" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Somme]"
+                      dataType="numeric"
+                      name="Somme"
+                      precision="18"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Decision\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Decision\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Decision\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Decision\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Decision\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Decision\Somme Date_Systeme"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Somme Date_Systeme"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Decision\Somme Date_Systeme.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Decision\Somme Date_Systeme.Inputs[Derived Column Input].Columns[val_1]"
+                      cachedDataType="numeric"
+                      cachedName="val_1"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_1]" />
+                    <inputColumn
+                      refId="Package\Decision\Somme Date_Systeme.Inputs[Derived Column Input].Columns[val_2]"
+                      cachedDataType="numeric"
+                      cachedName="val_2"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_2]" />
+                    <inputColumn
+                      refId="Package\Decision\Somme Date_Systeme.Inputs[Derived Column Input].Columns[val_3]"
+                      cachedDataType="numeric"
+                      cachedName="val_3"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_3]" />
+                    <inputColumn
+                      refId="Package\Decision\Somme Date_Systeme.Inputs[Derived Column Input].Columns[val_4]"
+                      cachedDataType="numeric"
+                      cachedName="val_4"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_4]" />
+                    <inputColumn
+                      refId="Package\Decision\Somme Date_Systeme.Inputs[Derived Column Input].Columns[val_5]"
+                      cachedDataType="numeric"
+                      cachedName="val_5"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_5]" />
+                    <inputColumn
+                      refId="Package\Decision\Somme Date_Systeme.Inputs[Derived Column Input].Columns[Decision]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Decision"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[Decision]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Decision\Somme Date_Systeme.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Decision\Somme Date_Systeme.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Decision\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Somme]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Decision\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Somme]"
+                      name="Somme"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[Decision]} == "NON" ? 0 : (DT_NUMERIC,18,2)(#{Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_1]} + #{Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_2]} + #{Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_3]} + #{Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_4]} + #{Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_5]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">Decision == "NON" ? 0 : (DT_NUMERIC,18,2)(val_1 + val_2 + val_3 + val_4 + val_5)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Date_Systeme]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Decision\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Date_Systeme]"
+                      name="Date_Systeme"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Decision\Somme Date_Systeme.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Decision\Somme Date_Systeme.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Decision\Somme Date_Systeme.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Decision\Somme Date_Systeme.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Decision\Somme Date_Systeme.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Decision\Somme Date_Systeme.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Decision\Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Decision\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Decision\Sort.Inputs[Sort Input].Columns[Nom]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Nom"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[Nom]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Decision\Sort.Inputs[Sort Input].Columns[val_1]"
+                      cachedDataType="numeric"
+                      cachedName="val_1"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[val_1]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Decision\Sort.Inputs[Sort Input].Columns[val_2]"
+                      cachedDataType="numeric"
+                      cachedName="val_2"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[val_2]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Decision\Sort.Inputs[Sort Input].Columns[val_3]"
+                      cachedDataType="numeric"
+                      cachedName="val_3"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[val_3]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Decision\Sort.Inputs[Sort Input].Columns[val_4]"
+                      cachedDataType="numeric"
+                      cachedName="val_4"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[val_4]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Decision\Sort.Inputs[Sort Input].Columns[Numero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Numero"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[Numero]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">-1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Decision\Sort.Inputs[Sort Input].Columns[val_5]"
+                      cachedDataType="numeric"
+                      cachedName="val_5"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[val_5]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Decision\Sort.Inputs[Sort Input].Columns[Decision]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="Decision"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[Decision]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Decision\Sort.Inputs[Sort Input].Columns[Date_Systeme]"
+                      cachedDataType="dbDate"
+                      cachedName="Date_Systeme"
+                      lineageId="Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[Date_Systeme]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Decision\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Decision\Sort.Outputs[Sort Output].Columns[Nom]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Decision\Sort.Outputs[Sort Output].Columns[Nom]"
+                      name="Nom">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[Nom]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Sort.Outputs[Sort Output].Columns[val_1]"
+                      dataType="numeric"
+                      lineageId="Package\Decision\Sort.Outputs[Sort Output].Columns[val_1]"
+                      name="val_1"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[val_1]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Sort.Outputs[Sort Output].Columns[val_2]"
+                      dataType="numeric"
+                      lineageId="Package\Decision\Sort.Outputs[Sort Output].Columns[val_2]"
+                      name="val_2"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[val_2]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Sort.Outputs[Sort Output].Columns[val_3]"
+                      dataType="numeric"
+                      lineageId="Package\Decision\Sort.Outputs[Sort Output].Columns[val_3]"
+                      name="val_3"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[val_3]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Sort.Outputs[Sort Output].Columns[val_4]"
+                      dataType="numeric"
+                      lineageId="Package\Decision\Sort.Outputs[Sort Output].Columns[val_4]"
+                      name="val_4"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[val_4]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Sort.Outputs[Sort Output].Columns[Numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Decision\Sort.Outputs[Sort Output].Columns[Numero]"
+                      name="Numero"
+                      sortKeyPosition="-1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[Numero]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Sort.Outputs[Sort Output].Columns[val_5]"
+                      dataType="numeric"
+                      lineageId="Package\Decision\Sort.Outputs[Sort Output].Columns[val_5]"
+                      name="val_5"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[val_5]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Sort.Outputs[Sort Output].Columns[Decision]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\Decision\Sort.Outputs[Sort Output].Columns[Decision]"
+                      name="Decision">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[Decision]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Sort.Outputs[Sort Output].Columns[Date_Systeme]"
+                      dataType="dbDate"
+                      lineageId="Package\Decision\Sort.Outputs[Sort Output].Columns[Date_Systeme]"
+                      name="Date_Systeme">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Decision\Data db.Outputs[OLE DB Source Output].Columns[Date_Systeme]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Decision\Sort DATA txt"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort DATA txt"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Decision\Sort DATA txt.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Decision\Sort DATA txt.Inputs[Sort Input].Columns[Numero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Numero"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[Numero]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">-1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Decision\Sort DATA txt.Inputs[Sort Input].Columns[Nom]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Nom"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[Nom]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Decision\Sort DATA txt.Inputs[Sort Input].Columns[val_1]"
+                      cachedDataType="numeric"
+                      cachedName="val_1"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_1]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Decision\Sort DATA txt.Inputs[Sort Input].Columns[val_2]"
+                      cachedDataType="numeric"
+                      cachedName="val_2"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_2]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Decision\Sort DATA txt.Inputs[Sort Input].Columns[val_3]"
+                      cachedDataType="numeric"
+                      cachedName="val_3"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_3]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Decision\Sort DATA txt.Inputs[Sort Input].Columns[val_4]"
+                      cachedDataType="numeric"
+                      cachedName="val_4"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_4]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Decision\Sort DATA txt.Inputs[Sort Input].Columns[val_5]"
+                      cachedDataType="numeric"
+                      cachedName="val_5"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_5]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Decision\Sort DATA txt.Inputs[Sort Input].Columns[Decision]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Decision"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[Decision]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Decision\Sort DATA txt.Inputs[Sort Input].Columns[Somme]"
+                      cachedDataType="numeric"
+                      cachedName="Somme"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Somme]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Decision\Sort DATA txt.Inputs[Sort Input].Columns[Date_Systeme]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Date_Systeme"
+                      lineageId="Package\Decision\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Date_Systeme]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Decision\Sort DATA txt.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[Numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[Numero]"
+                      name="Numero"
+                      sortKeyPosition="-1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[Numero]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[Nom]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[Nom]"
+                      name="Nom">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[Nom]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[val_1]"
+                      dataType="numeric"
+                      lineageId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[val_1]"
+                      name="val_1"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_1]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[val_2]"
+                      dataType="numeric"
+                      lineageId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[val_2]"
+                      name="val_2"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_2]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[val_3]"
+                      dataType="numeric"
+                      lineageId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[val_3]"
+                      name="val_3"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_3]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[val_4]"
+                      dataType="numeric"
+                      lineageId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[val_4]"
+                      name="val_4"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_4]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[val_5]"
+                      dataType="numeric"
+                      lineageId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[val_5]"
+                      name="val_5"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_5]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[Decision]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[Decision]"
+                      name="Decision">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[Decision]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[Somme]"
+                      dataType="numeric"
+                      lineageId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[Somme]"
+                      name="Somme"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Decision\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Somme]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[Date_Systeme]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Decision\Sort DATA txt.Outputs[Sort Output].Columns[Date_Systeme]"
+                      name="Date_Systeme">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Decision\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Date_Systeme]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Decision.Paths[Derived Column Output]"
+              endId="Package\Decision\Sort DATA txt.Inputs[Sort Input]"
+              name="Derived Column Output"
+              startId="Package\Decision\Somme Date_Systeme.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Decision.Paths[Flat File Source Output]"
+              endId="Package\Decision\Somme Date_Systeme.Inputs[Derived Column Input]"
+              name="Flat File Source Output"
+              startId="Package\Decision\DATA txt.Outputs[Flat File Source Output]" />
+            <path
+              refId="Package\Decision.Paths[Insert]"
+              endId="Package\Decision\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Insert"
+              startId="Package\Decision\Conditional Split.Outputs[Insert]" />
+            <path
+              refId="Package\Decision.Paths[Merge Join Output]"
+              endId="Package\Decision\Conditional Split.Inputs[Conditional Split Input]"
+              name="Merge Join Output"
+              startId="Package\Decision\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\Decision.Paths[OLE DB Source Output]"
+              endId="Package\Decision\Sort.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Decision\Data db.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Decision.Paths[Sort Output]"
+              endId="Package\Decision\Merge Join.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\Decision\Sort.Outputs[Sort Output]" />
+            <path
+              refId="Package\Decision.Paths[Sort Output1]"
+              endId="Package\Decision\Merge Join.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\Decision\Sort DATA txt.Outputs[Sort Output]" />
+            <path
+              refId="Package\Decision.Paths[Update]"
+              endId="Package\Decision\Conditional Split 1.Inputs[Conditional Split Input]"
+              name="Update"
+              startId="Package\Decision\Conditional Split.Outputs[Update]" />
+            <path
+              refId="Package\Decision.Paths[Update1]"
+              endId="Package\Decision\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Update"
+              startId="Package\Decision\Conditional Split 1.Outputs[Update]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="117.6,41.6"
+          Id="Package\Decision"
+          TopLeft="80.7142860670479,94.4117651884944" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Decision">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="120.8,41.6"
+          Id="Package\Decision\DATA txt"
+          TopLeft="87.8571420543048,23.1764701699715" />
+        <NodeLayout
+          Size="184.8,41.6"
+          Id="Package\Decision\Somme Date_Systeme"
+          TopLeft="92.5714239490275,110.235293195322" />
+        <EdgeLayout
+          Id="Package\Decision.Paths[Flat File Source Output]"
+          TopLeft="148.257142054305,64.7764701699715">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="36.7142818947227,45.4588230253504"
+              Start="0,0"
+              End="36.7142818947227,37.9588230253504">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.7294115126752" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.7294115126752"
+                    Point2="0,22.7294115126752"
+                    Point3="4,22.7294115126752" />
+                  <mssgle:LineSegment
+                    End="32.7142818947227,22.7294115126752" />
+                  <mssgle:CubicBezierSegment
+                    Point1="32.7142818947227,22.7294115126752"
+                    Point2="36.7142818947227,22.7294115126752"
+                    Point3="36.7142818947227,26.7294115126752" />
+                  <mssgle:LineSegment
+                    End="36.7142818947227,37.9588230253504" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="143.2,41.6"
+          Id="Package\Decision\Sort DATA txt"
+          TopLeft="137.857145204836,207.317649697103" />
+        <EdgeLayout
+          Id="Package\Decision.Paths[Derived Column Output]"
+          TopLeft="185.947617910265,151.835293195322">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55.4823565017806"
+              Start="0,0"
+              End="0,47.9823565017806">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.9823565017806" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="115.2,41.6"
+          Id="Package\Decision\Data db"
+          TopLeft="442.857150398955,36.7058828677273" />
+        <NodeLayout
+          Size="97.6,41.6"
+          Id="Package\Decision\Sort"
+          TopLeft="401.428578264859,133.823531288589" />
+        <EdgeLayout
+          Id="Package\Decision.Paths[OLE DB Source Output]"
+          TopLeft="500.457150398955,78.3058828677273">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-50.2285721340959,55.5176484208618"
+              Start="0,0"
+              End="-50.2285721340959,48.0176484208618">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.7588242104309" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.7588242104309"
+                    Point2="0,27.7588242104309"
+                    Point3="-4,27.7588242104309" />
+                  <mssgle:LineSegment
+                    End="-46.2285721340959,27.7588242104309" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-46.2285721340959,27.7588242104309"
+                    Point2="-50.2285721340959,27.7588242104309"
+                    Point3="-50.2285721340959,31.7588242104309" />
+                  <mssgle:LineSegment
+                    End="-50.2285721340959,48.0176484208618" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="129.6,41.6"
+          Id="Package\Decision\Merge Join"
+          TopLeft="328.571434166967,262.294121325635" />
+        <EdgeLayout
+          Id="Package\Decision.Paths[Sort Output]"
+          TopLeft="450.228578264859,175.423531288589">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-77.1238107645592,86.8705900370456"
+              Start="0,0"
+              End="-77.1238107645592,79.3705900370456">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.4867155585417" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,47.4867155585417"
+                    Point2="0,51.4867155585417"
+                    Point3="-4,51.4867155585417" />
+                  <mssgle:LineSegment
+                    End="-73.1238107645592,51.4867155585417" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-73.1238107645592,51.4867155585417"
+                    Point2="-77.1238107645592,51.4867155585417"
+                    Point3="-77.1238107645592,55.4867155585417" />
+                  <mssgle:LineSegment
+                    End="-77.1238107645592,79.3705900370456" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Decision.Paths[Sort Output1]"
+          TopLeft="281.057145204836,228.117649697103">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="47.5142889621309,54.9764716285322"
+              Start="0,0"
+              End="40.0142889621309,54.9764716285322">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="19.7571444810654,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="19.7571444810654,0"
+                    Point2="23.7571444810654,0"
+                    Point3="23.7571444810654,4" />
+                  <mssgle:LineSegment
+                    End="23.7571444810654,50.9764716285322" />
+                  <mssgle:CubicBezierSegment
+                    Point1="23.7571444810654,50.9764716285322"
+                    Point2="23.7571444810654,54.9764716285322"
+                    Point3="27.7571444810654,54.9764716285322" />
+                  <mssgle:LineSegment
+                    End="40.0142889621309,54.9764716285322" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\Decision\Conditional Split"
+          TopLeft="537.142866290346,153.705884508608" />
+        <EdgeLayout
+          Id="Package\Decision.Paths[Merge Join Output]"
+          TopLeft="413.638100833634,262.294121325635">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="176.304765456712,-66.9882368170266"
+              Start="0,0"
+              End="176.304765456712,-59.4882368170266">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-29.5748497185312" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-29.5748497185312"
+                    Point2="0,-33.5748497185312"
+                    Point3="4,-33.5748497185312" />
+                  <mssgle:LineSegment
+                    End="172.304765456712,-33.5748497185312" />
+                  <mssgle:CubicBezierSegment
+                    Point1="172.304765456712,-33.5748497185312"
+                    Point2="176.304765456712,-33.5748497185312"
+                    Point3="176.304765456712,-37.5748497185312" />
+                  <mssgle:LineSegment
+                    End="176.304765456712,-59.4882368170266" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="80.152382728356,-28.5748497185312,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Decision\OLE DB Destination"
+          TopLeft="625.000010643687,52.764706622358" />
+        <EdgeLayout
+          Id="Package\Decision.Paths[Insert]"
+          TopLeft="614.342866290346,153.705884508608">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="95.8571443533413,-59.3411778862501"
+              Start="0,0"
+              End="95.8571443533413,-51.8411778862501">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-25.670588943125" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-25.670588943125"
+                    Point2="0,-29.670588943125"
+                    Point3="4,-29.670588943125" />
+                  <mssgle:LineSegment
+                    End="91.8571443533413,-29.670588943125" />
+                  <mssgle:CubicBezierSegment
+                    Point1="91.8571443533413,-29.670588943125"
+                    Point2="95.8571443533413,-29.670588943125"
+                    Point3="95.8571443533413,-33.670588943125" />
+                  <mssgle:LineSegment
+                    End="95.8571443533413,-51.8411778862501" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="34.1755838954206,-24.670588943125,27.5059765625,9.40234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\Decision\OLE DB Command"
+          TopLeft="535.714294837446,299.000004193362" />
+        <NodeLayout
+          Size="163.2,41.6"
+          Id="Package\Decision\Conditional Split 1"
+          TopLeft="643.571439531385,238.258825760152" />
+        <EdgeLayout
+          Id="Package\Decision.Paths[Update]"
+          TopLeft="638.742866290346,195.305884508608">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="86.4285732410392,42.9529412515436"
+              Start="0,0"
+              End="86.4285732410392,35.4529412515436">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.4455022929346" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.4455022929346"
+                    Point2="0,17.4455022929346"
+                    Point3="4,17.4455022929346" />
+                  <mssgle:LineSegment
+                    End="82.4285732410392,17.4455022929346" />
+                  <mssgle:CubicBezierSegment
+                    Point1="82.4285732410392,17.4455022929346"
+                    Point2="86.4285732410392,17.4455022929346"
+                    Point3="86.4285732410392,21.4455022929346" />
+                  <mssgle:LineSegment
+                    End="86.4285732410392,35.4529412515436" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="26.9339936517696,22.4455022929346,32.5605859375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Decision.Paths[Update1]"
+          TopLeft="643.571439531385,259.058825760152">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-25.4571446939391,39.9411784332104"
+              Start="0,0"
+              End="-25.4571446939391,32.4411784332104">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-21.4571446939391,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-21.4571446939391,0"
+                    Point2="-25.4571446939391,0"
+                    Point3="-25.4571446939391,4" />
+                  <mssgle:LineSegment
+                    End="-25.4571446939391,32.4411784332104" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-41.7374376626891,-17.609375,32.5605859375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Decision\Data db">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Decision\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
