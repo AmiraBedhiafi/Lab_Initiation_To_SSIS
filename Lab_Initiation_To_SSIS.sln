@@ -5,6 +5,12 @@ VisualStudioVersion = 16.0.32602.291
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "Lab_Initiation_To_SSIS", "Lab_Initiation_To_SSIS.dtproj", "{3ADB1167-5D76-417B-8944-D6192939D7C0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other", "Other", "{715A699E-D7B2-4060-A434-0ADE905BBA46}"
+	ProjectSection(SolutionItems) = preProject
+		DATA_NON.txt = DATA_NON.txt
+		DATA_OUI.txt = DATA_OUI.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Development|Default = Development|Default
