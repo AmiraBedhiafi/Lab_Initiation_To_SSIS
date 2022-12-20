@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="21"
-  DTS:VersionGUID="{8C29E263-8C28-4A08-873C-2B8C1055BC63}">
+  DTS:VersionBuild="24"
+  DTS:VersionGUID="{903525EF-D652-4C1E-90F2-5D0101F793B5}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -696,6 +696,705 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
+      DTS:refId="Package\Decision"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{e57dca43-b618-4a4a-986e-f7961753b706}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Decision"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Decision\DATA table"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DATA table"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DATA]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Decision\DATA table.Connections[OleDbConnection]"
+                  connectionManagerID="{C4D167EA-A032-42EC-9EC2-02DF304716F6}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.Initiation_To_SSIS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Decision\DATA table.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].Columns[Numero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Numero"
+                      externalMetadataColumnId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[Numero]"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[Numero]" />
+                    <inputColumn
+                      refId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].Columns[Nom]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Nom"
+                      externalMetadataColumnId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[Nom]"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[Nom]" />
+                    <inputColumn
+                      refId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].Columns[val_1]"
+                      cachedDataType="numeric"
+                      cachedName="val_1"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[val_1]"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_1]" />
+                    <inputColumn
+                      refId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].Columns[val_2]"
+                      cachedDataType="numeric"
+                      cachedName="val_2"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[val_2]"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_2]" />
+                    <inputColumn
+                      refId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].Columns[val_3]"
+                      cachedDataType="numeric"
+                      cachedName="val_3"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[val_3]"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_3]" />
+                    <inputColumn
+                      refId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].Columns[val_4]"
+                      cachedDataType="numeric"
+                      cachedName="val_4"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[val_4]"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_4]" />
+                    <inputColumn
+                      refId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].Columns[val_5]"
+                      cachedDataType="numeric"
+                      cachedName="val_5"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[val_5]"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_5]" />
+                    <inputColumn
+                      refId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].Columns[Decision]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Decision"
+                      externalMetadataColumnId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[Decision]"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[Decision]" />
+                    <inputColumn
+                      refId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].Columns[Date_Systeme]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Date_Systeme"
+                      externalMetadataColumnId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[Date_Systeme]"
+                      lineageId="Package\Decision\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Date_Systeme]" />
+                    <inputColumn
+                      refId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].Columns[Somme]"
+                      cachedDataType="numeric"
+                      cachedName="Somme"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[Somme]"
+                      lineageId="Package\Decision\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Somme]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[Numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Numero" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[Nom]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Nom" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[val_1]"
+                      dataType="numeric"
+                      name="val_1"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[val_2]"
+                      dataType="numeric"
+                      name="val_2"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[val_3]"
+                      dataType="numeric"
+                      name="val_3"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[val_4]"
+                      dataType="numeric"
+                      name="val_4"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[val_5]"
+                      dataType="numeric"
+                      name="val_5"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[Decision]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="Decision" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[Date_Systeme]"
+                      dataType="dbDate"
+                      name="Date_Systeme" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\DATA table.Inputs[OLE DB Destination Input].ExternalColumns[Somme]"
+                      dataType="numeric"
+                      name="Somme"
+                      precision="18"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Decision\DATA table.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Decision\DATA table.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Decision\DATA table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Decision\DATA table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Decision\DATA table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Decision\DATA table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Decision\DATA txt"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="4096"
+              name="DATA txt"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Decision\DATA txt.Connections[FlatFileConnection]"
+                  connectionManagerID="{CE46EB6C-2939-4CB7-A15B-068F32CC37D6}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DATA txt Global]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Decision\DATA txt.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[Numero]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Numero]"
+                      length="50"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[Numero]"
+                      name="Numero"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[Nom]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Nom]"
+                      length="50"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[Nom]"
+                      name="Nom"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_1]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_1]"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_1]"
+                      name="val_1"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_2]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_2]"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_2]"
+                      name="val_2"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_3]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_3]"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_3]"
+                      name="val_3"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_4]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_4]"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_4]"
+                      name="val_4"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_5]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_5]"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_5]"
+                      name="val_5"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[Decision]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Decision]"
+                      length="50"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[Decision]"
+                      name="Decision"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Numero" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Nom]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Nom" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_1]"
+                      dataType="numeric"
+                      name="val_1"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_2]"
+                      dataType="numeric"
+                      name="val_2"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_3]"
+                      dataType="numeric"
+                      name="val_3"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_4]"
+                      dataType="numeric"
+                      name="val_4"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[val_5]"
+                      dataType="numeric"
+                      name="val_5"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Output].ExternalColumns[Decision]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Decision" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Decision\DATA txt.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Decision\DATA txt.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Decision\Somme Date_Systeme"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Somme Date_Systeme"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Decision\Somme Date_Systeme.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Decision\Somme Date_Systeme.Inputs[Derived Column Input].Columns[val_1]"
+                      cachedDataType="numeric"
+                      cachedName="val_1"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_1]" />
+                    <inputColumn
+                      refId="Package\Decision\Somme Date_Systeme.Inputs[Derived Column Input].Columns[val_2]"
+                      cachedDataType="numeric"
+                      cachedName="val_2"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_2]" />
+                    <inputColumn
+                      refId="Package\Decision\Somme Date_Systeme.Inputs[Derived Column Input].Columns[val_3]"
+                      cachedDataType="numeric"
+                      cachedName="val_3"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_3]" />
+                    <inputColumn
+                      refId="Package\Decision\Somme Date_Systeme.Inputs[Derived Column Input].Columns[val_4]"
+                      cachedDataType="numeric"
+                      cachedName="val_4"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_4]" />
+                    <inputColumn
+                      refId="Package\Decision\Somme Date_Systeme.Inputs[Derived Column Input].Columns[val_5]"
+                      cachedDataType="numeric"
+                      cachedName="val_5"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_5]" />
+                    <inputColumn
+                      refId="Package\Decision\Somme Date_Systeme.Inputs[Derived Column Input].Columns[Decision]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Decision"
+                      lineageId="Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[Decision]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Decision\Somme Date_Systeme.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Decision\Somme Date_Systeme.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Decision\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Somme]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Decision\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Somme]"
+                      name="Somme"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[Decision]} == "NON" ? 0 : (DT_NUMERIC,18,2)(#{Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_1]} + #{Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_2]} + #{Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_3]} + #{Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_4]} + #{Package\Decision\DATA txt.Outputs[Flat File Source Output].Columns[val_5]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">Decision == "NON" ? 0 : (DT_NUMERIC,18,2)(val_1 + val_2 + val_3 + val_4 + val_5)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Decision\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Date_Systeme]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Decision\Somme Date_Systeme.Outputs[Derived Column Output].Columns[Date_Systeme]"
+                      name="Date_Systeme"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Decision\Somme Date_Systeme.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Decision\Somme Date_Systeme.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Decision\Somme Date_Systeme.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Decision\Somme Date_Systeme.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Decision\Somme Date_Systeme.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Decision\Somme Date_Systeme.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Decision.Paths[Derived Column Output]"
+              endId="Package\Decision\DATA table.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Decision\Somme Date_Systeme.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Decision.Paths[Flat File Source Output]"
+              endId="Package\Decision\Somme Date_Systeme.Inputs[Derived Column Input]"
+              name="Flat File Source Output"
+              startId="Package\Decision\DATA txt.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\Sample Load of Data from data txt"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
@@ -1251,6 +1950,10 @@
           Size="241.6,41.6"
           Id="Package\Sample Load of Data from data txt"
           TopLeft="79.285715635942,84.1176482385418" />
+        <NodeLayout
+          Size="117.6,41.6"
+          Id="Package\Decision"
+          TopLeft="79.285715635942,287.317648238542" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -1409,6 +2112,109 @@
   </TaskHost>
   <PipelineComponentMetadata
     design-time-name="Package\Sample Load of Data from data txt\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Decision">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="120.8,41.6"
+          Id="Package\Decision\DATA txt"
+          TopLeft="135,53" />
+        <NodeLayout
+          Size="131.2,41.6"
+          Id="Package\Decision\DATA table"
+          TopLeft="687,119" />
+        <NodeLayout
+          Size="184.8,41.6"
+          Id="Package\Decision\Somme Date_Systeme"
+          TopLeft="364,176" />
+        <EdgeLayout
+          Id="Package\Decision.Paths[Flat File Source Output]"
+          TopLeft="195.4,94.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="261,81.4"
+              Start="0,0"
+              End="261,73.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.7" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.7"
+                    Point2="0,40.7"
+                    Point3="4,40.7" />
+                  <mssgle:LineSegment
+                    End="257,40.7" />
+                  <mssgle:CubicBezierSegment
+                    Point1="257,40.7"
+                    Point2="261,40.7"
+                    Point3="261,44.7" />
+                  <mssgle:LineSegment
+                    End="261,73.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Decision.Paths[Derived Column Output]"
+          TopLeft="548.8,196.8">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="138.2,-57"
+              Start="0,0"
+              End="130.7,-57">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="65.1,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="65.1,0"
+                    Point2="69.1,0"
+                    Point3="69.1,-4" />
+                  <mssgle:LineSegment
+                    End="69.1,-53" />
+                  <mssgle:CubicBezierSegment
+                    Point1="69.1,-53"
+                    Point2="69.1,-57"
+                    Point3="73.1,-57" />
+                  <mssgle:LineSegment
+                    End="130.7,-57" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="61.1,1,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Decision\DATA table">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
