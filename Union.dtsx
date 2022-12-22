@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="12"
-  DTS:VersionGUID="{1440579B-8A86-469F-B8F5-C1F94A23EFA8}">
+  DTS:VersionBuild="21"
+  DTS:VersionGUID="{0BE8E6A4-FC90-44FA-BD69-3F40EAFCA04F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -27,7 +27,7 @@
           DTS:Retain="True"
           DTS:ConnectRetryCount="0"
           DTS:ConnectRetryInterval="0"
-          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\amira\source\repos\Lab_Initiation_To_SSIS\data01.xls;Extended Properties=&quot;Excel 8.0;HDR=YES&quot;;" />
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\amira\source\repos\Lab_Initiation_To_SSIS\data01.xls;Extended Properties=&quot;EXCEL 8.0;HDR=YES&quot;;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -41,7 +41,7 @@
           DTS:Retain="True"
           DTS:ConnectRetryCount="0"
           DTS:ConnectRetryInterval="0"
-          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\amira\source\repos\Lab_Initiation_To_SSIS\data02.xls;Extended Properties=&quot;Excel 8.0;HDR=YES&quot;;" />
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\amira\source\repos\Lab_Initiation_To_SSIS\data02.xls;Extended Properties=&quot;EXCEL 8.0;HDR=YES&quot;;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -55,12 +55,29 @@
           DTS:Retain="True"
           DTS:ConnectRetryCount="0"
           DTS:ConnectRetryInterval="0"
-          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\amira\source\repos\Lab_Initiation_To_SSIS\data03.xls;Extended Properties=&quot;Excel 8.0;HDR=YES&quot;;" />
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\amira\source\repos\Lab_Initiation_To_SSIS\data03.xls;Extended Properties=&quot;EXCEL 8.0;HDR=YES&quot;;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\TRUNCATE DATA"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{10325C4F-1FE7-418C-AF51-98CE787FFED7}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TRUNCATE DATA"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022 CTP2.0; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C4D167EA-A032-42EC-9EC2-02DF304716F6}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.[DATA]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Union"
       DTS:CreationName="Microsoft.Pipeline"
@@ -92,19 +109,22 @@
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Numero"
-                      lineageId="Package\Union\Union All.Outputs[Union All Output 1].Columns[Numero]" />
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Union\Sort All.Outputs[Sort Output].Columns[Numero]" />
                     <inputColumn
                       refId="Package\Union\Data Conversion.Inputs[Data Conversion Input].Columns[Nom]"
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Nom"
-                      lineageId="Package\Union\Union All.Outputs[Union All Output 1].Columns[Nom]" />
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Union\Sort All.Outputs[Sort Output].Columns[Nom]" />
                     <inputColumn
                       refId="Package\Union\Data Conversion.Inputs[Data Conversion Input].Columns[Decision]"
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Decision"
-                      lineageId="Package\Union\Union All.Outputs[Union All Output 1].Columns[Decision]" />
+                      cachedSortKeyPosition="8"
+                      lineageId="Package\Union\Sort All.Outputs[Sort Output].Columns[Decision]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -131,7 +151,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Union\Union All.Outputs[Union All Output 1].Columns[Numero]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Union\Sort All.Outputs[Sort Output].Columns[Numero]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -153,7 +173,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Union\Union All.Outputs[Union All Output 1].Columns[Nom]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Union\Sort All.Outputs[Sort Output].Columns[Nom]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -175,7 +195,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Union\Union All.Outputs[Union All Output 1].Columns[Decision]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Union\Sort All.Outputs[Sort Output].Columns[Decision]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -984,32 +1004,37 @@
                       refId="Package\Union\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[val_1]"
                       cachedDataType="r8"
                       cachedName="val_1"
+                      cachedSortKeyPosition="3"
                       externalMetadataColumnId="Package\Union\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[val_1]"
-                      lineageId="Package\Union\Union All.Outputs[Union All Output 1].Columns[val_1]" />
+                      lineageId="Package\Union\Sort All.Outputs[Sort Output].Columns[val_1]" />
                     <inputColumn
                       refId="Package\Union\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[val_2]"
                       cachedDataType="r8"
                       cachedName="val_2"
+                      cachedSortKeyPosition="4"
                       externalMetadataColumnId="Package\Union\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[val_2]"
-                      lineageId="Package\Union\Union All.Outputs[Union All Output 1].Columns[val_2]" />
+                      lineageId="Package\Union\Sort All.Outputs[Sort Output].Columns[val_2]" />
                     <inputColumn
                       refId="Package\Union\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[val_3]"
                       cachedDataType="r8"
                       cachedName="val_3"
+                      cachedSortKeyPosition="5"
                       externalMetadataColumnId="Package\Union\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[val_3]"
-                      lineageId="Package\Union\Union All.Outputs[Union All Output 1].Columns[val_3]" />
+                      lineageId="Package\Union\Sort All.Outputs[Sort Output].Columns[val_3]" />
                     <inputColumn
                       refId="Package\Union\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[val_4]"
                       cachedDataType="r8"
                       cachedName="val_4"
+                      cachedSortKeyPosition="6"
                       externalMetadataColumnId="Package\Union\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[val_4]"
-                      lineageId="Package\Union\Union All.Outputs[Union All Output 1].Columns[val_4]" />
+                      lineageId="Package\Union\Sort All.Outputs[Sort Output].Columns[val_4]" />
                     <inputColumn
                       refId="Package\Union\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[val_5]"
                       cachedDataType="r8"
                       cachedName="val_5"
+                      cachedSortKeyPosition="7"
                       externalMetadataColumnId="Package\Union\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[val_5]"
-                      lineageId="Package\Union\Union All.Outputs[Union All Output 1].Columns[val_5]" />
+                      lineageId="Package\Union\Sort All.Outputs[Sort Output].Columns[val_5]" />
                     <inputColumn
                       refId="Package\Union\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Numero Converted]"
                       cachedCodepage="1252"
@@ -1124,6 +1149,1142 @@
               </outputs>
             </component>
             <component
+              refId="Package\Union\Sort All"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort All"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Union\Sort All.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Union\Sort All.Inputs[Sort Input].Columns[Numero]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Numero"
+                      lineageId="Package\Union\Union All.Outputs[Union All Output 1].Columns[Numero]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort All.Inputs[Sort Input].Columns[Nom]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Nom"
+                      lineageId="Package\Union\Union All.Outputs[Union All Output 1].Columns[Nom]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort All.Inputs[Sort Input].Columns[val_1]"
+                      cachedDataType="r8"
+                      cachedName="val_1"
+                      lineageId="Package\Union\Union All.Outputs[Union All Output 1].Columns[val_1]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort All.Inputs[Sort Input].Columns[val_2]"
+                      cachedDataType="r8"
+                      cachedName="val_2"
+                      lineageId="Package\Union\Union All.Outputs[Union All Output 1].Columns[val_2]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">4</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort All.Inputs[Sort Input].Columns[val_3]"
+                      cachedDataType="r8"
+                      cachedName="val_3"
+                      lineageId="Package\Union\Union All.Outputs[Union All Output 1].Columns[val_3]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">5</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort All.Inputs[Sort Input].Columns[val_4]"
+                      cachedDataType="r8"
+                      cachedName="val_4"
+                      lineageId="Package\Union\Union All.Outputs[Union All Output 1].Columns[val_4]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">6</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort All.Inputs[Sort Input].Columns[val_5]"
+                      cachedDataType="r8"
+                      cachedName="val_5"
+                      lineageId="Package\Union\Union All.Outputs[Union All Output 1].Columns[val_5]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">7</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort All.Inputs[Sort Input].Columns[Decision]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Decision"
+                      lineageId="Package\Union\Union All.Outputs[Union All Output 1].Columns[Decision]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">8</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Union\Sort All.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Union\Sort All.Outputs[Sort Output].Columns[Numero]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Union\Sort All.Outputs[Sort Output].Columns[Numero]"
+                      name="Numero"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\Union All.Outputs[Union All Output 1].Columns[Numero]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort All.Outputs[Sort Output].Columns[Nom]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Union\Sort All.Outputs[Sort Output].Columns[Nom]"
+                      name="Nom"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\Union All.Outputs[Union All Output 1].Columns[Nom]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort All.Outputs[Sort Output].Columns[val_1]"
+                      dataType="r8"
+                      lineageId="Package\Union\Sort All.Outputs[Sort Output].Columns[val_1]"
+                      name="val_1"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\Union All.Outputs[Union All Output 1].Columns[val_1]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort All.Outputs[Sort Output].Columns[val_2]"
+                      dataType="r8"
+                      lineageId="Package\Union\Sort All.Outputs[Sort Output].Columns[val_2]"
+                      name="val_2"
+                      sortKeyPosition="4">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\Union All.Outputs[Union All Output 1].Columns[val_2]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort All.Outputs[Sort Output].Columns[val_3]"
+                      dataType="r8"
+                      lineageId="Package\Union\Sort All.Outputs[Sort Output].Columns[val_3]"
+                      name="val_3"
+                      sortKeyPosition="5">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\Union All.Outputs[Union All Output 1].Columns[val_3]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort All.Outputs[Sort Output].Columns[val_4]"
+                      dataType="r8"
+                      lineageId="Package\Union\Sort All.Outputs[Sort Output].Columns[val_4]"
+                      name="val_4"
+                      sortKeyPosition="6">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\Union All.Outputs[Union All Output 1].Columns[val_4]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort All.Outputs[Sort Output].Columns[val_5]"
+                      dataType="r8"
+                      lineageId="Package\Union\Sort All.Outputs[Sort Output].Columns[val_5]"
+                      name="val_5"
+                      sortKeyPosition="7">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\Union All.Outputs[Union All Output 1].Columns[val_5]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort All.Outputs[Sort Output].Columns[Decision]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Union\Sort All.Outputs[Sort Output].Columns[Decision]"
+                      name="Decision"
+                      sortKeyPosition="8">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\Union All.Outputs[Union All Output 1].Columns[Decision]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Union\Sort data01"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort data01"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Union\Sort data01.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Union\Sort data01.Inputs[Sort Input].Columns[Numero]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Numero"
+                      lineageId="Package\Union\data01.Outputs[Excel Source Output].Columns[Numero]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort data01.Inputs[Sort Input].Columns[Nom]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Nom"
+                      lineageId="Package\Union\data01.Outputs[Excel Source Output].Columns[Nom]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort data01.Inputs[Sort Input].Columns[val_1]"
+                      cachedDataType="r8"
+                      cachedName="val_1"
+                      lineageId="Package\Union\data01.Outputs[Excel Source Output].Columns[val_1]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort data01.Inputs[Sort Input].Columns[val_2]"
+                      cachedDataType="r8"
+                      cachedName="val_2"
+                      lineageId="Package\Union\data01.Outputs[Excel Source Output].Columns[val_2]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">4</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort data01.Inputs[Sort Input].Columns[val_3]"
+                      cachedDataType="r8"
+                      cachedName="val_3"
+                      lineageId="Package\Union\data01.Outputs[Excel Source Output].Columns[val_3]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">5</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort data01.Inputs[Sort Input].Columns[val_4]"
+                      cachedDataType="r8"
+                      cachedName="val_4"
+                      lineageId="Package\Union\data01.Outputs[Excel Source Output].Columns[val_4]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">6</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort data01.Inputs[Sort Input].Columns[val_5]"
+                      cachedDataType="r8"
+                      cachedName="val_5"
+                      lineageId="Package\Union\data01.Outputs[Excel Source Output].Columns[val_5]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">7</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort data01.Inputs[Sort Input].Columns[Decision]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Decision"
+                      lineageId="Package\Union\data01.Outputs[Excel Source Output].Columns[Decision]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">8</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Union\Sort data01.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Union\Sort data01.Outputs[Sort Output].Columns[Numero]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Union\Sort data01.Outputs[Sort Output].Columns[Numero]"
+                      name="Numero"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\data01.Outputs[Excel Source Output].Columns[Numero]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort data01.Outputs[Sort Output].Columns[Nom]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Union\Sort data01.Outputs[Sort Output].Columns[Nom]"
+                      name="Nom"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\data01.Outputs[Excel Source Output].Columns[Nom]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort data01.Outputs[Sort Output].Columns[val_1]"
+                      dataType="r8"
+                      lineageId="Package\Union\Sort data01.Outputs[Sort Output].Columns[val_1]"
+                      name="val_1"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\data01.Outputs[Excel Source Output].Columns[val_1]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort data01.Outputs[Sort Output].Columns[val_2]"
+                      dataType="r8"
+                      lineageId="Package\Union\Sort data01.Outputs[Sort Output].Columns[val_2]"
+                      name="val_2"
+                      sortKeyPosition="4">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\data01.Outputs[Excel Source Output].Columns[val_2]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort data01.Outputs[Sort Output].Columns[val_3]"
+                      dataType="r8"
+                      lineageId="Package\Union\Sort data01.Outputs[Sort Output].Columns[val_3]"
+                      name="val_3"
+                      sortKeyPosition="5">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\data01.Outputs[Excel Source Output].Columns[val_3]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort data01.Outputs[Sort Output].Columns[val_4]"
+                      dataType="r8"
+                      lineageId="Package\Union\Sort data01.Outputs[Sort Output].Columns[val_4]"
+                      name="val_4"
+                      sortKeyPosition="6">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\data01.Outputs[Excel Source Output].Columns[val_4]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort data01.Outputs[Sort Output].Columns[val_5]"
+                      dataType="r8"
+                      lineageId="Package\Union\Sort data01.Outputs[Sort Output].Columns[val_5]"
+                      name="val_5"
+                      sortKeyPosition="7">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\data01.Outputs[Excel Source Output].Columns[val_5]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort data01.Outputs[Sort Output].Columns[Decision]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Union\Sort data01.Outputs[Sort Output].Columns[Decision]"
+                      name="Decision"
+                      sortKeyPosition="8">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\data01.Outputs[Excel Source Output].Columns[Decision]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Union\Sort data02"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort data02"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Union\Sort data02.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Union\Sort data02.Inputs[Sort Input].Columns[Numero]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Numero"
+                      lineageId="Package\Union\data02.Outputs[Excel Source Output].Columns[Numero]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort data02.Inputs[Sort Input].Columns[Nom]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Nom"
+                      lineageId="Package\Union\data02.Outputs[Excel Source Output].Columns[Nom]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort data02.Inputs[Sort Input].Columns[val_1]"
+                      cachedDataType="r8"
+                      cachedName="val_1"
+                      lineageId="Package\Union\data02.Outputs[Excel Source Output].Columns[val_1]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort data02.Inputs[Sort Input].Columns[val_2]"
+                      cachedDataType="r8"
+                      cachedName="val_2"
+                      lineageId="Package\Union\data02.Outputs[Excel Source Output].Columns[val_2]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">4</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort data02.Inputs[Sort Input].Columns[val_3]"
+                      cachedDataType="r8"
+                      cachedName="val_3"
+                      lineageId="Package\Union\data02.Outputs[Excel Source Output].Columns[val_3]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">5</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort data02.Inputs[Sort Input].Columns[val_4]"
+                      cachedDataType="r8"
+                      cachedName="val_4"
+                      lineageId="Package\Union\data02.Outputs[Excel Source Output].Columns[val_4]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">6</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort data02.Inputs[Sort Input].Columns[val_5]"
+                      cachedDataType="r8"
+                      cachedName="val_5"
+                      lineageId="Package\Union\data02.Outputs[Excel Source Output].Columns[val_5]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">7</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort data02.Inputs[Sort Input].Columns[Decision]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Decision"
+                      lineageId="Package\Union\data02.Outputs[Excel Source Output].Columns[Decision]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">8</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Union\Sort data02.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Union\Sort data02.Outputs[Sort Output].Columns[Numero]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Union\Sort data02.Outputs[Sort Output].Columns[Numero]"
+                      name="Numero"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\data02.Outputs[Excel Source Output].Columns[Numero]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort data02.Outputs[Sort Output].Columns[Nom]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Union\Sort data02.Outputs[Sort Output].Columns[Nom]"
+                      name="Nom"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\data02.Outputs[Excel Source Output].Columns[Nom]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort data02.Outputs[Sort Output].Columns[val_1]"
+                      dataType="r8"
+                      lineageId="Package\Union\Sort data02.Outputs[Sort Output].Columns[val_1]"
+                      name="val_1"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\data02.Outputs[Excel Source Output].Columns[val_1]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort data02.Outputs[Sort Output].Columns[val_2]"
+                      dataType="r8"
+                      lineageId="Package\Union\Sort data02.Outputs[Sort Output].Columns[val_2]"
+                      name="val_2"
+                      sortKeyPosition="4">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\data02.Outputs[Excel Source Output].Columns[val_2]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort data02.Outputs[Sort Output].Columns[val_3]"
+                      dataType="r8"
+                      lineageId="Package\Union\Sort data02.Outputs[Sort Output].Columns[val_3]"
+                      name="val_3"
+                      sortKeyPosition="5">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\data02.Outputs[Excel Source Output].Columns[val_3]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort data02.Outputs[Sort Output].Columns[val_4]"
+                      dataType="r8"
+                      lineageId="Package\Union\Sort data02.Outputs[Sort Output].Columns[val_4]"
+                      name="val_4"
+                      sortKeyPosition="6">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\data02.Outputs[Excel Source Output].Columns[val_4]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort data02.Outputs[Sort Output].Columns[val_5]"
+                      dataType="r8"
+                      lineageId="Package\Union\Sort data02.Outputs[Sort Output].Columns[val_5]"
+                      name="val_5"
+                      sortKeyPosition="7">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\data02.Outputs[Excel Source Output].Columns[val_5]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort data02.Outputs[Sort Output].Columns[Decision]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Union\Sort data02.Outputs[Sort Output].Columns[Decision]"
+                      name="Decision"
+                      sortKeyPosition="8">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\data02.Outputs[Excel Source Output].Columns[Decision]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Union\Sort data03"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort data03"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Union\Sort data03.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Union\Sort data03.Inputs[Sort Input].Columns[Numero]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Numero"
+                      lineageId="Package\Union\data03.Outputs[Excel Source Output].Columns[Numero]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort data03.Inputs[Sort Input].Columns[Nom]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Nom"
+                      lineageId="Package\Union\data03.Outputs[Excel Source Output].Columns[Nom]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort data03.Inputs[Sort Input].Columns[val_1]"
+                      cachedDataType="r8"
+                      cachedName="val_1"
+                      lineageId="Package\Union\data03.Outputs[Excel Source Output].Columns[val_1]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort data03.Inputs[Sort Input].Columns[val_2]"
+                      cachedDataType="r8"
+                      cachedName="val_2"
+                      lineageId="Package\Union\data03.Outputs[Excel Source Output].Columns[val_2]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">4</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort data03.Inputs[Sort Input].Columns[val_3]"
+                      cachedDataType="r8"
+                      cachedName="val_3"
+                      lineageId="Package\Union\data03.Outputs[Excel Source Output].Columns[val_3]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">5</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort data03.Inputs[Sort Input].Columns[val_4]"
+                      cachedDataType="r8"
+                      cachedName="val_4"
+                      lineageId="Package\Union\data03.Outputs[Excel Source Output].Columns[val_4]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">6</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort data03.Inputs[Sort Input].Columns[val_5]"
+                      cachedDataType="r8"
+                      cachedName="val_5"
+                      lineageId="Package\Union\data03.Outputs[Excel Source Output].Columns[val_5]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">7</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Sort data03.Inputs[Sort Input].Columns[Decision]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Decision"
+                      lineageId="Package\Union\data03.Outputs[Excel Source Output].Columns[Decision]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">8</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Union\Sort data03.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Union\Sort data03.Outputs[Sort Output].Columns[Numero]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Union\Sort data03.Outputs[Sort Output].Columns[Numero]"
+                      name="Numero"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\data03.Outputs[Excel Source Output].Columns[Numero]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort data03.Outputs[Sort Output].Columns[Nom]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Union\Sort data03.Outputs[Sort Output].Columns[Nom]"
+                      name="Nom"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\data03.Outputs[Excel Source Output].Columns[Nom]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort data03.Outputs[Sort Output].Columns[val_1]"
+                      dataType="r8"
+                      lineageId="Package\Union\Sort data03.Outputs[Sort Output].Columns[val_1]"
+                      name="val_1"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\data03.Outputs[Excel Source Output].Columns[val_1]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort data03.Outputs[Sort Output].Columns[val_2]"
+                      dataType="r8"
+                      lineageId="Package\Union\Sort data03.Outputs[Sort Output].Columns[val_2]"
+                      name="val_2"
+                      sortKeyPosition="4">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\data03.Outputs[Excel Source Output].Columns[val_2]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort data03.Outputs[Sort Output].Columns[val_3]"
+                      dataType="r8"
+                      lineageId="Package\Union\Sort data03.Outputs[Sort Output].Columns[val_3]"
+                      name="val_3"
+                      sortKeyPosition="5">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\data03.Outputs[Excel Source Output].Columns[val_3]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort data03.Outputs[Sort Output].Columns[val_4]"
+                      dataType="r8"
+                      lineageId="Package\Union\Sort data03.Outputs[Sort Output].Columns[val_4]"
+                      name="val_4"
+                      sortKeyPosition="6">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\data03.Outputs[Excel Source Output].Columns[val_4]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort data03.Outputs[Sort Output].Columns[val_5]"
+                      dataType="r8"
+                      lineageId="Package\Union\Sort data03.Outputs[Sort Output].Columns[val_5]"
+                      name="val_5"
+                      sortKeyPosition="7">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\data03.Outputs[Excel Source Output].Columns[val_5]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Union\Sort data03.Outputs[Sort Output].Columns[Decision]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Union\Sort data03.Outputs[Sort Output].Columns[Decision]"
+                      name="Decision"
+                      sortKeyPosition="8">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Union\data03.Outputs[Excel Source Output].Columns[Decision]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Union\Union All"
               componentClassID="Microsoft.UnionAll"
               contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
@@ -1131,6 +2292,129 @@
               name="Union All"
               version="1">
               <inputs>
+                <input
+                  refId="Package\Union\Union All.Inputs[Union All Input 1]"
+                  hasSideEffects="true"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Union\Union All.Inputs[Union All Input 1].Columns[Numero]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Numero"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Union\Sort data03.Outputs[Sort Output].Columns[Numero]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Union\Union All.Outputs[Union All Output 1].Columns[Numero]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Union All.Inputs[Union All Input 1].Columns[Nom]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Nom"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Union\Sort data03.Outputs[Sort Output].Columns[Nom]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Union\Union All.Outputs[Union All Output 1].Columns[Nom]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Union All.Inputs[Union All Input 1].Columns[val_1]"
+                      cachedDataType="r8"
+                      cachedName="val_1"
+                      cachedSortKeyPosition="3"
+                      lineageId="Package\Union\Sort data03.Outputs[Sort Output].Columns[val_1]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Union\Union All.Outputs[Union All Output 1].Columns[val_1]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Union All.Inputs[Union All Input 1].Columns[val_2]"
+                      cachedDataType="r8"
+                      cachedName="val_2"
+                      cachedSortKeyPosition="4"
+                      lineageId="Package\Union\Sort data03.Outputs[Sort Output].Columns[val_2]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Union\Union All.Outputs[Union All Output 1].Columns[val_2]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Union All.Inputs[Union All Input 1].Columns[val_3]"
+                      cachedDataType="r8"
+                      cachedName="val_3"
+                      cachedSortKeyPosition="5"
+                      lineageId="Package\Union\Sort data03.Outputs[Sort Output].Columns[val_3]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Union\Union All.Outputs[Union All Output 1].Columns[val_3]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Union All.Inputs[Union All Input 1].Columns[val_4]"
+                      cachedDataType="r8"
+                      cachedName="val_4"
+                      cachedSortKeyPosition="6"
+                      lineageId="Package\Union\Sort data03.Outputs[Sort Output].Columns[val_4]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Union\Union All.Outputs[Union All Output 1].Columns[val_4]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Union All.Inputs[Union All Input 1].Columns[val_5]"
+                      cachedDataType="r8"
+                      cachedName="val_5"
+                      cachedSortKeyPosition="7"
+                      lineageId="Package\Union\Sort data03.Outputs[Sort Output].Columns[val_5]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Union\Union All.Outputs[Union All Output 1].Columns[val_5]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Union\Union All.Inputs[Union All Input 1].Columns[Decision]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Decision"
+                      cachedSortKeyPosition="8"
+                      lineageId="Package\Union\Sort data03.Outputs[Sort Output].Columns[Decision]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Union\Union All.Outputs[Union All Output 1].Columns[Decision]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
                 <input
                   refId="Package\Union\Union All.Inputs[Union All Input 2]"
                   hasSideEffects="true"
@@ -1141,7 +2425,8 @@
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Numero"
-                      lineageId="Package\Union\data02.Outputs[Excel Source Output].Columns[Numero]">
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Union\Sort data02.Outputs[Sort Output].Columns[Numero]">
                       <properties>
                         <property
                           containsID="true"
@@ -1155,7 +2440,8 @@
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Nom"
-                      lineageId="Package\Union\data02.Outputs[Excel Source Output].Columns[Nom]">
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Union\Sort data02.Outputs[Sort Output].Columns[Nom]">
                       <properties>
                         <property
                           containsID="true"
@@ -1168,7 +2454,8 @@
                       refId="Package\Union\Union All.Inputs[Union All Input 2].Columns[val_1]"
                       cachedDataType="r8"
                       cachedName="val_1"
-                      lineageId="Package\Union\data02.Outputs[Excel Source Output].Columns[val_1]">
+                      cachedSortKeyPosition="3"
+                      lineageId="Package\Union\Sort data02.Outputs[Sort Output].Columns[val_1]">
                       <properties>
                         <property
                           containsID="true"
@@ -1181,7 +2468,8 @@
                       refId="Package\Union\Union All.Inputs[Union All Input 2].Columns[val_2]"
                       cachedDataType="r8"
                       cachedName="val_2"
-                      lineageId="Package\Union\data02.Outputs[Excel Source Output].Columns[val_2]">
+                      cachedSortKeyPosition="4"
+                      lineageId="Package\Union\Sort data02.Outputs[Sort Output].Columns[val_2]">
                       <properties>
                         <property
                           containsID="true"
@@ -1194,7 +2482,8 @@
                       refId="Package\Union\Union All.Inputs[Union All Input 2].Columns[val_3]"
                       cachedDataType="r8"
                       cachedName="val_3"
-                      lineageId="Package\Union\data02.Outputs[Excel Source Output].Columns[val_3]">
+                      cachedSortKeyPosition="5"
+                      lineageId="Package\Union\Sort data02.Outputs[Sort Output].Columns[val_3]">
                       <properties>
                         <property
                           containsID="true"
@@ -1207,7 +2496,8 @@
                       refId="Package\Union\Union All.Inputs[Union All Input 2].Columns[val_4]"
                       cachedDataType="r8"
                       cachedName="val_4"
-                      lineageId="Package\Union\data02.Outputs[Excel Source Output].Columns[val_4]">
+                      cachedSortKeyPosition="6"
+                      lineageId="Package\Union\Sort data02.Outputs[Sort Output].Columns[val_4]">
                       <properties>
                         <property
                           containsID="true"
@@ -1220,7 +2510,8 @@
                       refId="Package\Union\Union All.Inputs[Union All Input 2].Columns[val_5]"
                       cachedDataType="r8"
                       cachedName="val_5"
-                      lineageId="Package\Union\data02.Outputs[Excel Source Output].Columns[val_5]">
+                      cachedSortKeyPosition="7"
+                      lineageId="Package\Union\Sort data02.Outputs[Sort Output].Columns[val_5]">
                       <properties>
                         <property
                           containsID="true"
@@ -1234,7 +2525,8 @@
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Decision"
-                      lineageId="Package\Union\data02.Outputs[Excel Source Output].Columns[Decision]">
+                      cachedSortKeyPosition="8"
+                      lineageId="Package\Union\Sort data02.Outputs[Sort Output].Columns[Decision]">
                       <properties>
                         <property
                           containsID="true"
@@ -1256,7 +2548,8 @@
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Numero"
-                      lineageId="Package\Union\data03.Outputs[Excel Source Output].Columns[Numero]">
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Union\Sort data01.Outputs[Sort Output].Columns[Numero]">
                       <properties>
                         <property
                           containsID="true"
@@ -1270,7 +2563,8 @@
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Nom"
-                      lineageId="Package\Union\data03.Outputs[Excel Source Output].Columns[Nom]">
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Union\Sort data01.Outputs[Sort Output].Columns[Nom]">
                       <properties>
                         <property
                           containsID="true"
@@ -1283,7 +2577,8 @@
                       refId="Package\Union\Union All.Inputs[Union All Input 3].Columns[val_1]"
                       cachedDataType="r8"
                       cachedName="val_1"
-                      lineageId="Package\Union\data03.Outputs[Excel Source Output].Columns[val_1]">
+                      cachedSortKeyPosition="3"
+                      lineageId="Package\Union\Sort data01.Outputs[Sort Output].Columns[val_1]">
                       <properties>
                         <property
                           containsID="true"
@@ -1296,7 +2591,8 @@
                       refId="Package\Union\Union All.Inputs[Union All Input 3].Columns[val_2]"
                       cachedDataType="r8"
                       cachedName="val_2"
-                      lineageId="Package\Union\data03.Outputs[Excel Source Output].Columns[val_2]">
+                      cachedSortKeyPosition="4"
+                      lineageId="Package\Union\Sort data01.Outputs[Sort Output].Columns[val_2]">
                       <properties>
                         <property
                           containsID="true"
@@ -1309,7 +2605,8 @@
                       refId="Package\Union\Union All.Inputs[Union All Input 3].Columns[val_3]"
                       cachedDataType="r8"
                       cachedName="val_3"
-                      lineageId="Package\Union\data03.Outputs[Excel Source Output].Columns[val_3]">
+                      cachedSortKeyPosition="5"
+                      lineageId="Package\Union\Sort data01.Outputs[Sort Output].Columns[val_3]">
                       <properties>
                         <property
                           containsID="true"
@@ -1322,7 +2619,8 @@
                       refId="Package\Union\Union All.Inputs[Union All Input 3].Columns[val_4]"
                       cachedDataType="r8"
                       cachedName="val_4"
-                      lineageId="Package\Union\data03.Outputs[Excel Source Output].Columns[val_4]">
+                      cachedSortKeyPosition="6"
+                      lineageId="Package\Union\Sort data01.Outputs[Sort Output].Columns[val_4]">
                       <properties>
                         <property
                           containsID="true"
@@ -1335,7 +2633,8 @@
                       refId="Package\Union\Union All.Inputs[Union All Input 3].Columns[val_5]"
                       cachedDataType="r8"
                       cachedName="val_5"
-                      lineageId="Package\Union\data03.Outputs[Excel Source Output].Columns[val_5]">
+                      cachedSortKeyPosition="7"
+                      lineageId="Package\Union\Sort data01.Outputs[Sort Output].Columns[val_5]">
                       <properties>
                         <property
                           containsID="true"
@@ -1349,7 +2648,8 @@
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Decision"
-                      lineageId="Package\Union\data03.Outputs[Excel Source Output].Columns[Decision]">
+                      cachedSortKeyPosition="8"
+                      lineageId="Package\Union\Sort data01.Outputs[Sort Output].Columns[Decision]">
                       <properties>
                         <property
                           containsID="true"
@@ -1359,128 +2659,13 @@
                       </properties>
                     </inputColumn>
                   </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-                <input
-                  refId="Package\Union\Union All.Inputs[Union All Input 1]"
-                  dangling="true"
-                  hasSideEffects="true"
-                  name="Union All Input 1">
                   <externalMetadataColumns />
                 </input>
                 <input
                   refId="Package\Union\Union All.Inputs[Union All Input 4]"
+                  dangling="true"
                   hasSideEffects="true"
                   name="Union All Input 4">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Union\Union All.Inputs[Union All Input 4].Columns[Numero]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="Numero"
-                      lineageId="Package\Union\data01.Outputs[Excel Source Output].Columns[Numero]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Union\Union All.Outputs[Union All Output 1].Columns[Numero]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Union\Union All.Inputs[Union All Input 4].Columns[Nom]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="Nom"
-                      lineageId="Package\Union\data01.Outputs[Excel Source Output].Columns[Nom]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Union\Union All.Outputs[Union All Output 1].Columns[Nom]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Union\Union All.Inputs[Union All Input 4].Columns[val_1]"
-                      cachedDataType="r8"
-                      cachedName="val_1"
-                      lineageId="Package\Union\data01.Outputs[Excel Source Output].Columns[val_1]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Union\Union All.Outputs[Union All Output 1].Columns[val_1]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Union\Union All.Inputs[Union All Input 4].Columns[val_2]"
-                      cachedDataType="r8"
-                      cachedName="val_2"
-                      lineageId="Package\Union\data01.Outputs[Excel Source Output].Columns[val_2]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Union\Union All.Outputs[Union All Output 1].Columns[val_2]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Union\Union All.Inputs[Union All Input 4].Columns[val_4]"
-                      cachedDataType="r8"
-                      cachedName="val_4"
-                      lineageId="Package\Union\data01.Outputs[Excel Source Output].Columns[val_4]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Union\Union All.Outputs[Union All Output 1].Columns[val_4]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Union\Union All.Inputs[Union All Input 4].Columns[val_3]"
-                      cachedDataType="r8"
-                      cachedName="val_3"
-                      lineageId="Package\Union\data01.Outputs[Excel Source Output].Columns[val_3]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Union\Union All.Outputs[Union All Output 1].Columns[val_3]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Union\Union All.Inputs[Union All Input 4].Columns[val_5]"
-                      cachedDataType="r8"
-                      cachedName="val_5"
-                      lineageId="Package\Union\data01.Outputs[Excel Source Output].Columns[val_5]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Union\Union All.Outputs[Union All Output 1].Columns[val_5]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Union\Union All.Inputs[Union All Input 4].Columns[Decision]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="Decision"
-                      lineageId="Package\Union\data01.Outputs[Excel Source Output].Columns[Decision]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Union\Union All.Outputs[Union All Output 1].Columns[Decision]}</property>
-                      </properties>
-                    </inputColumn>
-                  </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
@@ -1546,22 +2731,42 @@
               startId="Package\Union\Data Conversion.Outputs[Data Conversion Output]" />
             <path
               refId="Package\Union.Paths[Excel Source Output]"
-              endId="Package\Union\Union All.Inputs[Union All Input 2]"
-              name="Excel Source Output"
-              startId="Package\Union\data02.Outputs[Excel Source Output]" />
-            <path
-              refId="Package\Union.Paths[Excel Source Output1]"
-              endId="Package\Union\Union All.Inputs[Union All Input 3]"
-              name="Excel Source Output"
-              startId="Package\Union\data03.Outputs[Excel Source Output]" />
-            <path
-              refId="Package\Union.Paths[Excel Source Output2]"
-              endId="Package\Union\Union All.Inputs[Union All Input 4]"
+              endId="Package\Union\Sort data01.Inputs[Sort Input]"
               name="Excel Source Output"
               startId="Package\Union\data01.Outputs[Excel Source Output]" />
             <path
-              refId="Package\Union.Paths[Union All Output 1]"
+              refId="Package\Union.Paths[Excel Source Output1]"
+              endId="Package\Union\Sort data02.Inputs[Sort Input]"
+              name="Excel Source Output"
+              startId="Package\Union\data02.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\Union.Paths[Excel Source Output2]"
+              endId="Package\Union\Sort data03.Inputs[Sort Input]"
+              name="Excel Source Output"
+              startId="Package\Union\data03.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\Union.Paths[Sort Output]"
+              endId="Package\Union\Union All.Inputs[Union All Input 1]"
+              name="Sort Output"
+              startId="Package\Union\Sort data03.Outputs[Sort Output]" />
+            <path
+              refId="Package\Union.Paths[Sort Output1]"
+              endId="Package\Union\Union All.Inputs[Union All Input 2]"
+              name="Sort Output"
+              startId="Package\Union\Sort data02.Outputs[Sort Output]" />
+            <path
+              refId="Package\Union.Paths[Sort Output2]"
+              endId="Package\Union\Union All.Inputs[Union All Input 3]"
+              name="Sort Output"
+              startId="Package\Union\Sort data01.Outputs[Sort Output]" />
+            <path
+              refId="Package\Union.Paths[Sort Output3]"
               endId="Package\Union\Data Conversion.Inputs[Data Conversion Input]"
+              name="Sort Output"
+              startId="Package\Union\Sort All.Outputs[Sort Output]" />
+            <path
+              refId="Package\Union.Paths[Union All Output 1]"
+              endId="Package\Union\Sort All.Inputs[Sort Input]"
               name="Union All Output 1"
               startId="Package\Union\Union All.Outputs[Union All Output 1]" />
           </paths>
@@ -1569,6 +2774,16 @@
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{C5AC5965-87C3-4D41-B123-CFFD7C669D93}"
+      DTS:From="Package\TRUNCATE DATA"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Union" />
+  </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -1580,11 +2795,49 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="160,41.6"
+          Id="Package\TRUNCATE DATA"
+          TopLeft="118.571430590688,64.2352950185228" />
         <NodeLayout
           Size="105.6,41.6"
           Id="Package\Union"
-          TopLeft="60,60" />
+          TopLeft="122.142858201144,164.000001458561" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="198.571430590688,105.835295018523">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-23.6285723895443,58.1647064400379"
+              Start="0,0"
+              End="-23.6285723895443,50.6647064400379">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.082353220019" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.082353220019"
+                    Point2="0,29.082353220019"
+                    Point3="-4,29.082353220019" />
+                  <mssgle:LineSegment
+                    End="-19.6285723895443,29.082353220019" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-19.6285723895443,29.082353220019"
+                    Point2="-23.6285723895443,29.082353220019"
+                    Point3="-23.6285723895443,33.082353220019" />
+                  <mssgle:LineSegment
+                    End="-23.6285723895443,50.6647064400379" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -1592,79 +2845,69 @@
     design-time-name="Package\Union">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="120,41.6"
           Id="Package\Union\Union All"
-          TopLeft="260.714290154224,129.235295930123" />
+          TopLeft="257.857147248424,205.705885237889" />
         <NodeLayout
-          Size="110.4,41.6"
-          Id="Package\Union\data02"
-          TopLeft="273.571433230322,32.1176475092614" />
-        <EdgeLayout
-          Id="Package\Union.Paths[Excel Source Output]"
-          TopLeft="328.771433230322,73.7176475092614">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-8.05714307609873,55.5176484208619"
-              Start="0,0"
-              End="-8.05714307609873,48.0176484208619">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,23.7588242104309" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,23.7588242104309"
-                    Point2="0,27.7588242104309"
-                    Point3="-4,27.7588242104309" />
-                  <mssgle:LineSegment
-                    End="-4.05714307609873,27.7588242104309" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-4.05714307609873,27.7588242104309"
-                    Point2="-8.05714307609873,27.7588242104309"
-                    Point3="-8.05714307609873,31.7588242104309" />
-                  <mssgle:LineSegment
-                    End="-8.05714307609873,48.0176484208619" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="132.8,41.6"
+          Id="Package\Union\Sort data03"
+          TopLeft="454.285722022154,108.388235905426" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Union\OLE DB Destination"
+          TopLeft="265.714290239374,287.529415797197" />
         <NodeLayout
           Size="110.4,41.6"
           Id="Package\Union\data03"
           TopLeft="483.571436806601,38.1294108745548" />
+        <NodeLayout
+          Size="110.4,41.6"
+          Id="Package\Union\data02"
+          TopLeft="273.571433230322,32.1176475092614" />
+        <NodeLayout
+          Size="132.8,41.6"
+          Id="Package\Union\Sort data02"
+          TopLeft="205.714289217579,108.588236817027" />
+        <NodeLayout
+          Size="110.4,41.6"
+          Id="Package\Union\data01"
+          TopLeft="98.57143025009,36.7058828677273" />
+        <NodeLayout
+          Size="155.2,41.6"
+          Id="Package\Union\Data Conversion"
+          TopLeft="562.142866716093,229.294120414034" />
+        <NodeLayout
+          Size="132.8,41.6"
+          Id="Package\Union\Sort data01"
+          TopLeft="33.5714291431466,128.470590037046" />
         <EdgeLayout
           Id="Package\Union.Paths[Excel Source Output1]"
-          TopLeft="538.771436806601,79.7294108745548">
+          TopLeft="328.771433230322,73.7176475092614">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-190.057146652378,49.5058850555685"
+              EndConnector="-56.6571440127429,34.8705893077653"
               Start="0,0"
-              End="-190.057146652378,42.0058850555685">
+              End="-56.6571440127429,27.3705893077653">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,28.2864467753708" />
+                    End="0,13.4352946538826" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,28.2864467753708"
-                    Point2="0,32.2864467753708"
-                    Point3="-4,32.2864467753708" />
+                    Point1="0,13.4352946538826"
+                    Point2="0,17.4352946538826"
+                    Point3="-4,17.4352946538826" />
                   <mssgle:LineSegment
-                    End="-186.057146652378,32.2864467753708" />
+                    End="-52.6571440127429,17.4352946538826" />
                   <mssgle:CubicBezierSegment
-                    Point1="-186.057146652378,32.2864467753708"
-                    Point2="-190.057146652378,32.2864467753708"
-                    Point3="-190.057146652378,36.2864467753708" />
+                    Point1="-52.6571440127429,17.4352946538826"
+                    Point2="-56.6571440127429,17.4352946538826"
+                    Point3="-56.6571440127429,21.4352946538826" />
                   <mssgle:LineSegment
-                    End="-190.057146652378,42.0058850555685" />
+                    End="-56.6571440127429,27.3705893077653" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1673,40 +2916,32 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="170.4,41.6"
-          Id="Package\Union\OLE DB Destination"
-          TopLeft="280.714290494822,243.941179891771" />
-        <NodeLayout
-          Size="155.2,41.6"
-          Id="Package\Union\Data Conversion"
-          TopLeft="495.71429415625,192.588237546307" />
         <EdgeLayout
-          Id="Package\Union.Paths[Union All Output 1]"
-          TopLeft="380.714290154224,150.035295930123">
+          Id="Package\Union.Paths[Excel Source Output]"
+          TopLeft="153.77143025009,78.3058828677273">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="115.000004002026,63.3529416161837"
+              EndConnector="-53.8000011069434,50.1647071693183"
               Start="0,0"
-              End="107.500004002026,63.3529416161837">
+              End="-53.8000011069434,42.6647071693183">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="53.5000020010132,0" />
+                    End="0,21.0823535846592" />
                   <mssgle:CubicBezierSegment
-                    Point1="53.5000020010132,0"
-                    Point2="57.5000020010132,0"
-                    Point3="57.5000020010132,4" />
+                    Point1="0,21.0823535846592"
+                    Point2="0,25.0823535846592"
+                    Point3="-4,25.0823535846592" />
                   <mssgle:LineSegment
-                    End="57.5000020010132,59.3529416161837" />
+                    End="-49.8000011069434,25.0823535846592" />
                   <mssgle:CubicBezierSegment
-                    Point1="57.5000020010132,59.3529416161837"
-                    Point2="57.5000020010132,63.3529416161837"
-                    Point3="61.5000020010132,63.3529416161837" />
+                    Point1="-49.8000011069434,25.0823535846592"
+                    Point2="-53.8000011069434,25.0823535846592"
+                    Point3="-53.8000011069434,29.0823535846592" />
                   <mssgle:LineSegment
-                    End="107.500004002026,63.3529416161837" />
+                    End="-53.8000011069434,42.6647071693183" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1717,30 +2952,168 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Union.Paths[Data Conversion Output]"
-          TopLeft="495.71429415625,218.988237546307">
+          TopLeft="562.142866716093,255.694120414034">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-44.6000036614283,45.7529423454641"
+              EndConnector="-126.02857647672,52.6352953831627"
               Start="0,0"
-              End="-37.1000036614283,45.7529423454641">
+              End="-118.52857647672,52.6352953831627">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="-14.8311126570475,0" />
+                    End="-49.2120656235039,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="-14.8311126570475,0"
-                    Point2="-18.8311126570475,0"
-                    Point3="-18.8311126570475,4" />
+                    Point1="-49.2120656235039,0"
+                    Point2="-53.2120656235039,0"
+                    Point3="-53.2120656235039,4" />
                   <mssgle:LineSegment
-                    End="-18.8311126570475,41.7529423454641" />
+                    End="-53.2120656235039,48.6352953831627" />
                   <mssgle:CubicBezierSegment
-                    Point1="-18.8311126570475,41.7529423454641"
-                    Point2="-18.8311126570475,45.7529423454641"
-                    Point3="-22.8311126570475,45.7529423454641" />
+                    Point1="-53.2120656235039,48.6352953831627"
+                    Point2="-53.2120656235039,52.6352953831627"
+                    Point3="-57.2120656235039,52.6352953831627" />
                   <mssgle:LineSegment
-                    End="-37.1000036614283,45.7529423454641" />
+                    End="-118.52857647672,52.6352953831627" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-61.2120656235039,-22,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Union.Paths[Excel Source Output2]"
+          TopLeft="538.771436806601,79.7294108745548">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-18.0857147844469,28.6588250308713"
+              Start="0,0"
+              End="-18.0857147844469,21.1588250308713">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.3294125154357" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.3294125154357"
+                    Point2="0,14.3294125154357"
+                    Point3="-4,14.3294125154357" />
+                  <mssgle:LineSegment
+                    End="-14.0857147844469,14.3294125154357" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-14.0857147844469,14.3294125154357"
+                    Point2="-18.0857147844469,14.3294125154357"
+                    Point3="-18.0857147844469,18.3294125154357" />
+                  <mssgle:LineSegment
+                    End="-18.0857147844469,21.1588250308713" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Union.Paths[Sort Output]"
+          TopLeft="520.685722022154,149.988235905426">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-174.82857477373,55.7176493324625"
+              Start="0,0"
+              End="-174.82857477373,48.2176493324625">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.3375973907364" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.3375973907364"
+                    Point2="0,36.3375973907364"
+                    Point3="-4,36.3375973907364" />
+                  <mssgle:LineSegment
+                    End="-170.82857477373,36.3375973907364" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-170.82857477373,36.3375973907364"
+                    Point2="-174.82857477373,36.3375973907364"
+                    Point3="-174.82857477373,40.3375973907364" />
+                  <mssgle:LineSegment
+                    End="-174.82857477373,48.2176493324625" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Union.Paths[Sort Output1]"
+          TopLeft="272.114289217579,150.188236817027">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="45.742858030845,55.5176484208617"
+              Start="0,0"
+              End="45.742858030845,48.0176484208617">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.7588242104308" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.7588242104308"
+                    Point2="0,27.7588242104308"
+                    Point3="4,27.7588242104308" />
+                  <mssgle:LineSegment
+                    End="41.742858030845,27.7588242104308" />
+                  <mssgle:CubicBezierSegment
+                    Point1="41.742858030845,27.7588242104308"
+                    Point2="45.742858030845,27.7588242104308"
+                    Point3="45.742858030845,31.7588242104308" />
+                  <mssgle:LineSegment
+                    End="45.742858030845,48.0176484208617" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Union.Paths[Sort Output2]"
+          TopLeft="99.9714291431466,170.070590037046">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="189.885718105277,35.6352952008427"
+              Start="0,0"
+              End="189.885718105277,28.1352952008427">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.2404099135931" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.2404099135931"
+                    Point2="0,23.2404099135931"
+                    Point3="4,23.2404099135931" />
+                  <mssgle:LineSegment
+                    End="185.885718105277,23.2404099135931" />
+                  <mssgle:CubicBezierSegment
+                    Point1="185.885718105277,23.2404099135931"
+                    Point2="189.885718105277,23.2404099135931"
+                    Point3="189.885718105277,27.2404099135931" />
+                  <mssgle:LineSegment
+                    End="189.885718105277,28.1352952008427" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1750,35 +3123,57 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="110.4,41.6"
-          Id="Package\Union\data01"
-          TopLeft="98.57143025009,36.7058828677273" />
+          Size="112,41.6"
+          Id="Package\Union\Sort All"
+          TopLeft="432.857150228656,212.894119320114" />
         <EdgeLayout
-          Id="Package\Union.Paths[Excel Source Output2]"
-          TopLeft="153.77143025009,78.3058828677273">
+          Id="Package\Union.Paths[Union All Output 1]"
+          TopLeft="377.857147248424,230.100002279001">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="138.942859904134,50.929413062396"
+              EndConnector="55.0000029802323,0"
               Start="0,0"
-              End="138.942859904134,43.429413062396">
+              End="47.5000029802323,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,29.2148346059104" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,29.2148346059104"
-                    Point2="0,33.2148346059104"
-                    Point3="4,33.2148346059104" />
+                    End="47.5000029802323,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Union.Paths[Sort Output3]"
+          TopLeft="488.857150228656,212.894119320114">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="150.885716487437,16.4000010939205"
+              Start="0,0"
+              End="150.885716487437,8.90000109392054">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="134.942859904134,33.2148346059104" />
+                    End="0,-18.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="134.942859904134,33.2148346059104"
-                    Point2="138.942859904134,33.2148346059104"
-                    Point3="138.942859904134,37.2148346059104" />
+                    Point1="0,-18.5"
+                    Point2="0,-22.5"
+                    Point3="4,-22.5" />
                   <mssgle:LineSegment
-                    End="138.942859904134,43.429413062396" />
+                    End="146.885716487437,-22.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="146.885716487437,-22.5"
+                    Point2="150.885716487437,-22.5"
+                    Point3="150.885716487437,-18.5" />
+                  <mssgle:LineSegment
+                    End="150.885716487437,8.90000109392054" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1791,7 +3186,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Union\data02">
+    design-time-name="Package\Union\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1817,7 +3212,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Union\OLE DB Destination">
+    design-time-name="Package\Union\data02">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
