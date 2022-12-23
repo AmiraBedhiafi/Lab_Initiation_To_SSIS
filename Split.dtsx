@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="3"
-  DTS:VersionGUID="{D08B97FA-3677-47A9-B0AE-34696FA54D10}">
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{9708762F-C3DF-47D4-A6B6-83055AEA9344}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -315,38 +315,10 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Split\Conditional Split.Outputs[DATA_NON]"
-                  description="Output 2 of the Conditional Split Transformation"
-                  errorOrTruncationOperation="Computation"
-                  errorRowDisposition="FailComponent"
-                  exclusionGroup="1"
-                  name="DATA_NON"
-                  synchronousInputId="Package\Split\Conditional Split.Inputs[Conditional Split Input]"
-                  truncationRowDisposition="FailComponent">
-                  <properties>
-                    <property
-                      containsID="true"
-                      dataType="System.String"
-                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">#{Package\Split\DATA txt.Outputs[Flat File Source Output].Columns[Decision]} == "NON"</property>
-                    <property
-                      containsID="true"
-                      dataType="System.String"
-                      description="Specifies the friendly version of the expression. This expression version uses column names."
-                      expressionType="Notify"
-                      name="FriendlyExpression">Decision == "NON"</property>
-                    <property
-                      dataType="System.Int32"
-                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
-                      name="EvaluationOrder">1</property>
-                  </properties>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Split\Conditional Split.Outputs[Conditional Split Default Output]"
+                  refId="Package\Split\Conditional Split.Outputs[NON]"
                   description="Default Output of the Conditional Split Transformation"
                   exclusionGroup="1"
-                  name="Conditional Split Default Output"
+                  name="NON"
                   synchronousInputId="Package\Split\Conditional Split.Inputs[Conditional Split Input]">
                   <properties>
                     <property
@@ -1150,11 +1122,6 @@
           </components>
           <paths>
             <path
-              refId="Package\Split.Paths[DATA_NON]"
-              endId="Package\Split\DATA_NON.Inputs[Flat File Destination Input]"
-              name="DATA_NON"
-              startId="Package\Split\Conditional Split.Outputs[DATA_NON]" />
-            <path
               refId="Package\Split.Paths[DATA_OUI]"
               endId="Package\Split\DATA_OUI.Inputs[Flat File Destination Input]"
               name="DATA_OUI"
@@ -1169,6 +1136,11 @@
               endId="Package\Split\Somme Date_Systeme.Inputs[Derived Column Input]"
               name="Flat File Source Output"
               startId="Package\Split\DATA txt.Outputs[Flat File Source Output]" />
+            <path
+              refId="Package\Split.Paths[NON]"
+              endId="Package\Split\DATA_NON.Inputs[Flat File Destination Input]"
+              name="NON"
+              startId="Package\Split\Conditional Split.Outputs[NON]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -1199,13 +1171,25 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="120.8,41.6"
-          Id="Package\Split\DATA txt"
-          TopLeft="135,53" />
+          Size="132,41.6"
+          Id="Package\Split\DATA_NON"
+          TopLeft="504,318" />
         <NodeLayout
           Size="184.8,41.6"
           Id="Package\Split\Somme Date_Systeme"
           TopLeft="349,87" />
+        <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\Split\Conditional Split"
+          TopLeft="352,196" />
+        <NodeLayout
+          Size="120.8,41.6"
+          Id="Package\Split\DATA txt"
+          TopLeft="135,53" />
+        <NodeLayout
+          Size="128.8,41.6"
+          Id="Package\Split\DATA_OUI"
+          TopLeft="132,295" />
         <EdgeLayout
           Id="Package\Split.Paths[Flat File Source Output]"
           TopLeft="255.8,73.8">
@@ -1240,10 +1224,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="154.4,41.6"
-          Id="Package\Split\Conditional Split"
-          TopLeft="352,196" />
         <EdgeLayout
           Id="Package\Split.Paths[Derived Column Output]"
           TopLeft="441.4,128.6">
@@ -1278,10 +1258,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="128.8,41.6"
-          Id="Package\Split\DATA_OUI"
-          TopLeft="132,295" />
         <EdgeLayout
           Id="Package\Split.Paths[DATA_OUI]"
           TopLeft="429.2,237.6">
@@ -1318,12 +1294,8 @@
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="132,41.6"
-          Id="Package\Split\DATA_NON"
-          TopLeft="504,318" />
         <EdgeLayout
-          Id="Package\Split.Paths[DATA_NON]"
+          Id="Package\Split.Paths[NON]"
           TopLeft="453.6,237.6">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -1354,7 +1326,7 @@
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="32.68490234375,37.6547692307692,51.0301953125,10.88671875"
+              BoundingBox="47.72490234375,37.6547692307692,20.9501953125,9.5732421875"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
